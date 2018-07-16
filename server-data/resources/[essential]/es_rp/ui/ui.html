@@ -1,0 +1,342 @@
+<html>
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script>
+			const names = {}
+
+			function fillInventory(inv) {
+				$('.inventoryItem').remove()
+
+				for(var i in inv){
+					let item = inv[i]
+					let name = item.name
+					let amount = item.amount
+					let ext = item.ex
+
+					let elem = $("<tr class='inventoryItem'><td class='name'>" + name + "</td><td>" + amount + " " + ext + "</td><td><div class='btn'>Destroy</div> </td></tr>")
+
+					elem.find('.btn').click(function(){
+						let itemName = $(this).parent().parent().find('.name').text()
+						$.post('http://es_rp/remove_item', JSON.stringify({item: itemName}));
+					})
+
+					$("#inventory").append(elem)
+
+				}
+			}
+
+			function fillJobGarage(garage){
+				$('.jobGarageItem').remove()
+
+				for(var i in garage){
+					let name = garage[i]
+
+					if(names[name])
+						name = names[name]
+
+					let elem = $('<button class="jobGarageItem">' + name + '</button>')
+
+					elem.click(function(){
+						$.post('http://es_rp/spawn_vehicle', JSON.stringify({vehicle: $(this).text()}));
+					})
+
+					$("#jobGarage").find('.body').append(elem)
+				}
+			}
+
+			$(function() {
+				window.addEventListener('message', function(event) {
+					if(event.data.type == "inventorySwitch"){
+						$("#inventoryD").css('display', event.data.enable ? "block" : "none")
+					}else if(event.data.type == "inventoryUpdate"){
+						fillInventory(JSON.parse(event.data.inventory))
+			        }else if(event.data.type == "jobSwitch"){
+						$("#jobs").css('display', event.data.enable ? "block" : "none")
+						        	
+			        }else if(event.data.type == "weaponSwitch"){
+			        	if(event.data.legal)
+							$("#weapons").css('display', event.data.enable ? "block" : "none")
+						else
+							$("#weapons_illegal").css('display', event.data.enable ? "block" : "none")
+
+							        	
+			        }else if(event.data.type == "ownWeapon"){
+			        	$("#" + event.data.weapon).css('background', 'green')
+			        	$("#" + event.data.weapon).find('b').text("")
+			        }else if(event.data.type == "garageUpdate"){
+			        	fillJobGarage(JSON.parse(event.data.vehicles))
+			        }else if(event.data.type == "garageSwitch"){
+						$("#jobGarage").css('display', event.data.enable ? "block" : "none")
+					}
+				})
+
+				$(window).keydown(function(e){
+					if(e.which == 8 || e.which == 39 || e.which == 27){
+						$.post('http://es_rp/close', JSON.stringify({}));
+					}
+				})
+
+				$("#jobs_close").click(function(){
+					$.post('http://es_rp/close', JSON.stringify({}));
+				})
+				$("#inventory_close").click(function(){
+					$.post('http://es_rp/close', JSON.stringify({}));
+				})
+				$("#weapons_close").click(function(){
+					$.post('http://es_rp/close', JSON.stringify({}));
+				})
+				$("#jobgarage_close").click(function(){
+					$.post('http://es_rp/close', JSON.stringify({}));
+				})
+				$("#weapons_illegal_close").click(function(){
+					$.post('http://es_rp/close', JSON.stringify({}));
+				})
+
+				$("#police").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Police Officer"})); })
+				$("#ems").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "EMS"})); })
+				$("#civilian").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Civilian"})); })
+				$("#mechanic").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Mechanic"})); })
+				$("#Taxi").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Taxi"})); })
+				$("#Kurier").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Kurier"})); })
+				$("#Kierowca").click(function(){ $.post('http://es_rp/choose_job', JSON.stringify({job: "Kierowca TIRa"})); })
+
+				$('.weapon').click(function(){
+					$.post('http://es_rp/buy_weapon', JSON.stringify({weapon: $(this).attr('id')}));
+					$('.weapon').blur()
+				})
+			})
+		</script>
+
+		<style>
+			body {
+				background: rgba(255, 0, 0, 0);
+			}
+
+			.btn {
+				float: right;
+				z-index: 98;
+				padding: 5px;
+				padding-left: 9px;
+				padding-right: 9px;
+				border: none;
+				background: rgb(151,66,66);
+				color: white;
+			}
+
+			table {
+				border-collapse: collapse;
+				color: white;
+			}
+			th {
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			td {
+				border-bottom: 1px solid rgb(40, 40, 40);
+			}
+			th, td {
+			    border-collapse: collapse;
+			    padding: 10px;
+			    text-align: left;
+			    font-family: sans-serif;
+			}
+
+			table tr:nth-child(even) {
+			    background-color: rgb(40, 40, 40);
+			}
+			table tr:nth-child(odd) {
+			    background-color: rgb(60, 60, 60);
+			}
+
+			#jobs, #weapons, #jobGarage, #inventoryD, #weapons_illegal {
+				display: none;
+				height: 400px;
+				background: rgb(60, 60, 60);
+				color: white;
+				width: 600px;
+				position: absolute;
+			    top: 50%;
+			    left: 50%;
+			    margin-top: -200px;
+			    margin-left: -300px;
+			    padding-bottom: 10px;
+			    border-radius: 13px;
+			}
+
+			::-webkit-scrollbar { 
+			    display: none;
+			}
+
+			.topbar {
+				height: 50px;
+				font-weight: bold;
+				font-size: 26px;
+				background: rgb(40, 40, 40);
+			}
+
+			.body {
+				height: 350px;
+				overflow-y: scroll;
+			}
+
+			.topbar p {
+				top: 0;
+				margin-top: 0;
+				padding: 10px;
+				display: inline-block;
+			}
+
+			#jobs_close, #weapons_close, #jobgarage_close, #weapons_illegal_close, #inventory_close {
+				display: inline-block;
+				float: right;
+				padding: 5px;
+				padding-right: 10px;
+				color: rgb(255,0,0);
+			}
+
+			.job {
+				margin-top: 5px;
+				margin-left: 5px;
+				width: 190px;
+				height: 40px;
+				border: none;
+				background: rgb(151,66,66);
+				color: white;
+				font-size: 19px;
+			}
+
+			.weapon, .jobGarageItem {
+				margin-top: 5px;
+				margin-left: 5px;
+				width: 590px;
+				height: 40px;
+				border: none;
+				background: rgb(151,66,66);
+				color: white;
+				text-align: left;
+				font-size: 19px;		
+			}
+
+			.jobGarageItem {
+				text-align: center;
+			}
+
+			.weapon b {
+				float: right;
+			}
+
+			#weapons_illegal .topbar p b {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="inventoryD">
+			<div class='topbar'>
+				<p>Inventory</p>
+				<div id="inventory_close">&#10006;</div>
+			</div>
+			<div class='body'>
+				<table id="inventory">
+					<tr>
+						<th style="width: 20%">Item</th>
+						<th style="width: 10%">Amount</th>
+						<th style="width: 70%">Options</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="jobs">
+			<div class='topbar'>
+				<p>Select Job</p>
+				<div id="jobs_close">&#10006;</div>
+			</div>
+			<div class='body'>
+				<button id="police" class="job">Police Officer</button>
+				<button id="ems" class="job">EMS</button>
+				<button id="mechanic" class="job">Mechanic</button>
+				<button id="Taxi" class="job">Taxi</button>
+				<button id="Kurier" class="job">Kurier</button>
+				<button id="Kierowca" class="job">Kierowca</button>
+				<button id="civilian" class="job">Civilian</button>
+			</div>
+		</div>
+
+		<div id="jobGarage">
+			<div class='topbar'>
+				<p>Select Vehicle</p>
+				<div id="jobgarage_close">&#10006;</div>
+			</div>
+			<div class='body'>
+			</div>
+		</div>
+
+		<div id="weapons_illegal">
+			<div class='topbar'>
+				<p>Ammu-Nation <b>ILLEGAL</b></p>
+				<div id="weapons_illegal_close">&#10006;</div>
+			</div>
+			<div class='body'>
+				<button id="WEAPON_APPISTOL" class="weapon">AP Pistol <b>$450</b></button>
+				<button id="WEAPON_MINISMG" class="weapon">Mini SMG <b>$500</b></button>
+				<button id="WEAPON_SMG" class="weapon">SMG <b>$650</b></button>
+				<button id="WEAPON_COMBATPDW" class="weapon">Combat PDW <b>$800</b></button>
+				<button id="WEAPON_ASSAULTSMG" class="weapon">Assault SMG <b>$900</b></button>
+				<button id="WEAPON_BULLPUPSHOTGUN" class="weapon">Bullpup Shotgun <b>$700</b></button>
+				<button id="WEAPON_ASSAULTSHOTGUN" class="weapon">Assault Shotgun <b>$900</b></button>
+				<button id="WEAPON_COMPACTRIFLE" class="weapon">Compact Rifle <b>$900</b></button>
+				<button id="WEAPON_ASSAULTRIFLE" class="weapon">Assault Rifle <b>$1000</b></button>
+				<button id="WEAPON_CARBINERIFLE" class="weapon">Carbine Rifle <b>$1100</b></button>
+				<button id="WEAPON_SPECIALCARBINE" class="weapon">Special Carbine <b>$1250</b></button>
+				<button id="WEAPON_BULLPUPRIFLE" class="weapon">Bullpup Rifle <b>$1250</b></button>
+				<button id="WEAPON_ADVANCEDRIFLE" class="weapon">Advanced Rifle <b>$1400</b></button>
+				<button id="GRENADELAUNCHERSMOKE" class="weapon">Smoke Grenade Launcher <b>$10000</b></button>
+				<button id="WEAPON_RAILGUN" class="weapon">Railgun <b>$9999999</b></button>
+				<button id="WEAPON_FIREEXTINGUISHER" class="weapon">Fire Extinguisher <b>$25</b></button>
+				<button id="WEAPON_PETROLCAN" class="weapon">Petrol Can <b>$50</b></button>
+				<button id="WEAPON_GRENADE" class="weapon">Grenade <b>$500</b></button>
+				<button id="WEAPON_MOLOTOV" class="weapon">Molotov <b>$500</b></button>
+				<button id="WEAPON_SMOKEGRENADE" class="weapon">Smoke Grenade <b>$500</b></button>
+			</div>
+		</div>
+		<div id="weapons">
+			<div class='topbar'>
+				<p>Ammu-Nation</p>
+				<div id="weapons_close">&#10006;</div>
+			</div>
+			<div class='body'>
+				<button id="WEAPON_KNIFE" class="weapon">Knife <b>$20</b></button>
+				<button id="WEAPON_HAMMER" class="weapon">Hammer <b>$20</b></button>
+				<button id="WEAPON_BAT" class="weapon">Bat <b>$20</b></button>
+				<button id="WEAPON_CROWBAR" class="weapon">Crowbar <b>$20</b></button>
+				<button id="WEAPON_GOLFCLUB" class="weapon">Golf Club <b>$20</b></button>
+				<button id="WEAPON_BOTTLE" class="weapon">Bottle <b>$20</b></button>
+				<button id="WEAPON_DAGGER" class="weapon">Dagger <b>$20</b></button>
+				<button id="WEAPON_HATCHET" class="weapon">Hatchet <b>$20</b></button>
+				<button id="WEAPON_KNUCKLEDUSTER" class="weapon">Knuckle Dusters <b>$20</b></button>
+				<button id="WEAPON_MACHETE" class="weapon">Machete <b>$20</b></button>
+				<button id="WEAPON_FLASHLIGHT" class="weapon">Torch <b>$20</b></button>
+				<button id="WEAPON_SWITCHBLADE" class="weapon">Switch Blade <b>$20</b></button>
+				<button id="WEAPON_PISTOL" class="weapon">Pistol <b>$250</b></button>
+				<button id="WEAPON_SNSPISTOL" class="weapon">SNS Pistol <b>$275</b></button>
+				<button id="WEAPON_VINTAGEPISTOL" class="weapon">Vintage Pistol <b>$300</b></button>
+				<button id="WEAPON_COMBATPISTOL" class="weapon">Combat Pistol <b>$320</b></button>
+				<button id="WEAPON_HEAVYPISTOL" class="weapon">Heavy Pistol <b>$375</b></button>
+				<button id="WEAPON_PISTOL50" class="weapon">Pistol 50 <b>$390</b></button>
+				<button id="WEAPON_MARKSMANPISTOL" class="weapon">Marksman Pistol <b>$400</b></button>
+				<button id="WEAPON_FLAREGUN" class="weapon">Flare Gun <b>$300</b></button>
+				<button id="WEAPON_MICROSMG" class="weapon">Micro SMG <b>$500</b></button>
+				<button id="WEAPON_PUMPSHOTGUN" class="weapon">Pump Shotgun <b>$400</b></button>
+				<button id="WEAPON_SAWNOFFSHOTGUN" class="weapon">Sawnoff Shotgun <b>$400</b></button>
+				<button id="WEAPON_FIREEXTINGUISHER" class="weapon">Fire Extinguisher <b>$25</b></button>
+				<button id="WEAPON_PETROLCAN" class="weapon">Petrol Can <b>$50</b></button>
+				<button id="WEAPON_BALL" class="weapon">Ball <b>$10</b></button>
+			</div>
+		</div>
+
+		<script>
+		</script>
+	</body>
+</html>

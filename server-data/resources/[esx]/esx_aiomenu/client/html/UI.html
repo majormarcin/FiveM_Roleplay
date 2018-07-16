@@ -1,0 +1,1559 @@
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	
+		<style>
+		.general {display: none;}
+		.esx {display: none;}
+		.jobs {display: none;}
+		.vehicles {display: none;}
+		.ambulance {display: none;}
+		.police {display: none;}
+		.taxi {display: none;}
+		.mechanic {display: none;}
+		.fire {display: none;}
+		.billing {display: none;}
+		.characters {display: none;}
+		.animations {display: none;}
+		.phone {display: none;}
+		.inventory {display: none;}
+		.vehicle {display: none;}
+		.doors {display: none;}
+		.windows {display: none;}
+        .listChar {display: none;}
+        .changeChar {display: none;}
+        .deleteChar {display: none;}
+  
+		</style>
+		
+	<script>
+	$(function() {
+		/* open the UI for user */
+		window.addEventListener('message', function(event) {
+			if (event.data.type == "openGeneral"){
+				$('.general').css('display', 'block')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'none')
+                
+				
+			} else if (event.data.type == "openESX"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'block')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "openJobs"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'block')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "openVehicles"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'block')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "openDoorActions"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'block')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "openCharacters"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'none')
+				$('.characters').css('display', 'block')
+				
+			} else if (event.data.type == "openWindows"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.doors').css('display', 'none')
+				$('.windows').css('display', 'block')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "closeAll"){
+				$('.general').css('display', 'none')
+				$('.esx').css('display', 'none')
+				$('.jobs').css('display', 'none')
+				$('.vehicles').css('display', 'none')
+				$('.characters').css('display', 'none')
+				
+			} else if (event.data.type == "showAmbulanceButton"){
+				$('.ambulance').css('display', 'block')
+				
+			} else if (event.data.type == "hideAmbulanceButton"){
+				$('.ambulance').css('display', 'none')
+				
+			} else if (event.data.type == "showPoliceButton"){
+				$('.police').css('display', 'block')
+				
+			} else if (event.data.type == "hidePoliceButton"){
+				$('.police').css('display', 'none')
+				
+			} else if (event.data.type == "showFireButton"){
+				$('.fire').css('display', 'block')
+				
+			} else if (event.data.type == "hideFireButton"){
+				$('.fire').css('display', 'none')
+				
+			} else if (event.data.type == "showTaxiButton"){
+				$('.taxi').css('display', 'block')
+				
+			} else if (event.data.type == "hideTaxiButton"){
+				$('.taxi').css('display', 'none')
+				
+			} else if (event.data.type == "showMechanicButton"){
+				$('.mechanic').css('display', 'block')
+				
+			} else if (event.data.type == "hideMechanicButton"){
+				$('.mechanic').css('display', 'none')
+				
+			} else if (event.data.type == "showVehicleButton"){
+				$('.vehicle').css('display', 'block')
+				
+			} else if (event.data.type == "hideVehicleButton"){
+				$('.vehicle').css('display', 'none')
+				
+			} else if (event.data.type == "showBillingButton"){
+				$('.billing').css('display', 'block')
+				
+			} else if (event.data.type == "hideBillingButton"){
+				$('.billing').css('display', 'none')
+				
+			} else if (event.data.type == "showInventoryButton"){
+				$('.inventory').css('display', 'block')
+				
+			} else if (event.data.type == "hideInventoryButton"){
+				$('.inventory').css('display', 'none')
+				
+			} else if (event.data.type == "showPhoneButton"){
+				$('.phone').css('display', 'block')
+				
+			} else if (event.data.type == "hidePhoneButton"){
+				$('.phone').css('display', 'none')
+				
+			} else if (event.data.type == "showAnimationsButton"){
+				$('.animations').css('display', 'block')
+				
+			} else if (event.data.type == "hideAnimationsButton"){
+				$('.animations').css('display', 'none')
+				
+			} else if (event.data.type == "listCharacters"){
+                $('.listChar').css('display', 'block')
+				$('.list').show()
+				var listbtn = document.getElementById("listcharacter1");
+				document.getElementById("listcharacter1").style.background = "DarkRed";
+				var listt = document.createTextNode(event.data.char1);
+				listbtn.className = "list";
+				listbtn.appendChild(listt);
+				document.body.appendChild(listbtn);
+				
+				var listbtn2 = document.getElementById("listcharacter2");
+				document.getElementById("listcharacter2").style.background = "DarkRed";
+				var listt2 = document.createTextNode(event.data.char2);
+				listbtn2.className = "list";
+				listbtn2.appendChild(listt2);
+				document.body.appendChild(listbtn2);
+				
+				var listbtn3 = document.getElementById("listcharacter3");
+				document.getElementById("listcharacter3").style.background = "DarkRed";
+				var listt3 = document.createTextNode(event.data.char3);
+				listbtn3.className = "list";
+				listbtn3.appendChild(listt3);
+				document.body.appendChild(listbtn3);
+				
+				var listbtn4 = document.getElementById("listCharBackBtn");
+				var listt4 = document.createTextNode(event.data.backBtn);
+				listbtn4.className = "list";
+				listbtn4.appendChild(listt4);
+				document.body.appendChild(listbtn4);
+                
+				var listbtn5 = document.getElementById("listCharExitBtn");
+				var listt5 = document.createTextNode(event.data.exitBtn);
+				listbtn5.className = "list";
+				listbtn5.appendChild(listt5);
+				document.body.appendChild(listbtn5);
+                
+                
+			} else if (event.data.type == "changeCharacters"){
+                $('.changeChar').css('display', 'block')
+				$('.change').show()
+				var changebtn = document.getElementById("changecharacter1");
+				document.getElementById("changecharacter1").style.background = "DarkRed";
+				var changet = document.createTextNode(event.data.char1);
+				changebtn.className = "change";
+				changebtn.appendChild(changet);
+				document.body.appendChild(changebtn);
+				
+				var changebtn2 = document.getElementById("changecharacter2");
+				document.getElementById("changecharacter2").style.background = "DarkRed";
+				var changet2 = document.createTextNode(event.data.char2);
+				changebtn2.className = "change";
+				changebtn2.appendChild(changet2);
+				document.body.appendChild(changebtn2);
+				
+				var changebtn3 = document.getElementById("changecharacter3");
+				document.getElementById("changecharacter3").style.background = "DarkRed";
+				var changet3 = document.createTextNode(event.data.char3);
+				changebtn3.className = "change";
+				changebtn3.appendChild(changet3);
+				document.body.appendChild(changebtn3);
+				
+				var changebtn4 = document.getElementById("changeCharBackBtn");
+				var changet4 = document.createTextNode(event.data.backBtn);
+				changebtn4.className = "change";
+				changebtn4.appendChild(changet4);
+				document.body.appendChild(changebtn4);
+                
+				var changebtn5 = document.getElementById("changeCharExitBtn");
+				var changet5 = document.createTextNode(event.data.exitBtn);
+				changebtn5.className = "change";
+				changebtn5.appendChild(changet5);
+				document.body.appendChild(changebtn5);
+                
+                
+			} else if (event.data.type == "deleteCharacters"){
+                $('.deleteChar').css('display', 'block')
+				$('.delete').show()
+				var deletebtn = document.getElementById("deletecharacter1");
+				document.getElementById("deletecharacter1").style.background = "DarkRed";
+				var deletet = document.createTextNode(event.data.char1);
+				deletebtn.className = "delete";
+				deletebtn.appendChild(deletet);
+				document.body.appendChild(deletebtn);
+				
+				var deletebtn2 = document.getElementById("deletecharacter2");
+				document.getElementById("deletecharacter2").style.background = "DarkRed";
+				var deletet2 = document.createTextNode(event.data.char2);
+				deletebtn2.className = "delete";
+				deletebtn2.appendChild(deletet2);
+				document.body.appendChild(deletebtn2);
+				
+				var deletebtn3 = document.getElementById("deletecharacter3");
+				document.getElementById("deletecharacter3").style.background = "DarkRed";
+				var deletet3 = document.createTextNode(event.data.char3);
+				deletebtn3.className = "delete";
+				deletebtn3.appendChild(deletet3);
+				document.body.appendChild(deletebtn3);
+				
+				var deletebtn4 = document.getElementById("deleteCharBackBtn");
+				var deletet4 = document.createTextNode(event.data.backBtn);
+				deletebtn4.className = "delete";
+				deletebtn4.appendChild(deletet4);
+				document.body.appendChild(deletebtn4);
+                
+				var deletebtn5 = document.getElementById("deleteCharExitBtn");
+				var deletet5 = document.createTextNode(event.data.exitBtn);
+				deletebtn5.className = "delete";
+				deletebtn5.appendChild(deletet5);
+				document.body.appendChild(deletebtn5);
+                
+                
+			}						
+		});
+	});
+	</script>
+	
+	</head>
+
+    <body>
+		<div class="general">
+			<div class="main">			
+				<button class="phone_num">Give Phone Number</button>
+				<button class="show_id">Show ID</button>
+				<button class="lock">Toggle Vehicle Locks</button>	
+				<div class="vehicle">
+					<button id="veh_gui">Vehicle Actions</button>
+				</div>
+				<button id="char_gui">Character Actions</button>	
+				<button id="esx_gui">ESX Actions</button>
+				<button id="job_gui">Job Actions</button>
+				<button id="exitgen_gui">Exit</button>
+			</div>
+
+		</div>
+		
+		<div class="esx">
+			<div class="main">
+				<div class="inventory">
+					<button id="inv_gui">Inventory</button>
+				</div>
+				<div class="phone">
+					<button id="phone_gui">Phone</button>
+				</div>
+				<div class="billing">
+					<button id="invoice_gui">Invoices</button>
+				</div>
+				<div class="animations">
+					<button id="anim_gui">Animations</button>
+				</div>
+				<button class="voice">Voice Range</button>
+				<button id="gen2_gui">Back</button>
+				<button id="exitesx_gui">Exit</button>
+			</div>
+		</div>
+		
+		<div class="jobs">
+			<div class="main">
+				<div class="ambulance">
+					<button id="amb_gui">Ambulance</button>
+				</div>
+				<div class="police">
+					<button id="pol_gui">Police</button>
+				</div>
+				<div class="taxi">
+					<button id="taxi_gui">Taxi</button>
+				</div>
+				<div class="mechanic">
+					<button id="mec_gui">Mechanic</button>
+				</div>
+				<div class="fire">
+					<button id="fire_gui">Fire</button>
+				</div>
+				<button id="gen3_gui">Back</button>
+				<button id="exitjob_gui">Exit</button>
+			</div>
+		</div>
+		
+		<div class="vehicles">
+			<div class="main">
+				<button class="toggle_engine">Toggle Engine</button>
+				<button id="window_gui">-Window Controls-</button>
+				<button id="door_gui">-Door Controls-</button>
+				<button id="gen4_gui">Back</button>
+				<button id="exitveh_gui">Exit</button>
+			</div>
+		</div>
+		
+		<div class="doors">
+			<div class="main">
+				<button class="toggle_hood">Toggle Hood</button>
+				<button class="toggle_trunk">Toggle Trunk</button>
+				<button class="toggle_fldoor">Toggle Front Left Door</button>
+				<button class="toggle_frdoor">Toggle Front Right Door</button>
+				<button class="toggle_rldoor">Toggle Back Left Door</button>
+				<button class="toggle_rrdoor">Toggle Back Right Door</button>
+				<button id="veh2_gui">Back</button>
+				<button id="exitveh2_gui">Exit</button>
+			</div>
+		</div>
+		
+		<div class="windows">
+			<div class="main">
+				<button class="toggle_windowsup">Windows Up</button>
+				<button class="toggle_windowsdown">Windows Down</button>
+				<button id="veh3_gui">Back</button>
+				<button id="exitveh3_gui">Exit</button>
+			</div>
+		</div>
+		
+		<div class="characters">
+			<div class="main">
+				<button class="list_char">List Characters</button>
+				<button class="change_char">Change Character</button>
+				<button class="delete_char">Delete Character</button>
+				<button id="new_gui">New Character</button>
+				<button id="gen5_gui">Back</button>
+				<button id="exitchar_gui">Exit</button>
+			</div>
+		</div>
+        
+        <div class="listChar">
+            <div class="main">
+            <button id="listcharacter1"></button>
+            <button id="listcharacter2"></button>
+            <button id="listcharacter3"></button>               
+            <button id="listCharBackBtn"></button>
+            <button id="listCharExitBtn"></button>
+            </div>
+        </div>
+		
+        <div class="changeChar">
+            <div class="main">
+            <button id="changecharacter1" class="schar1"></button>
+            <button id="changecharacter2" class="schar2"></button>
+            <button id="changecharacter3" class="schar3"></button>               
+            <button id="changeCharBackBtn"></button>
+            <button id="changeCharExitBtn"></button>
+            </div>
+        </div>
+		
+        <div class="deleteChar">
+            <div class="main">
+            <button id="deletecharacter1" class="dchar1"></button>
+            <button id="deletecharacter2" class="dchar2"></button>
+            <button id="deletecharacter3" class="dchar3"></button>               
+            <button id="deleteCharBackBtn"></button>
+            <button id="deleteCharExitBtn"></button>
+            </div>
+        </div>
+        
+    </body>
+    
+
+    
+  
+	
+	<script type="text/javascript">	
+
+    document.getElementById("listcharacter1").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("listcharacter2").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("listcharacter3").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("changecharacter1").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("changecharacter2").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("changecharacter3").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("deletecharacter1").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("deletecharacter2").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("deletecharacter3").onmouseover = function() 
+    {
+      this.style.backgroundColor = "Red";
+    }
+	
+    document.getElementById("listcharacter1").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("listcharacter2").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("listcharacter3").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("changecharacter1").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("changecharacter2").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("changecharacter3").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("deletecharacter1").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("deletecharacter2").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+    document.getElementById("deletecharacter3").onmouseout = function() 
+    {
+      this.style.backgroundColor = "DarkRed";
+    }
+	
+	$(".show_id").click(function(){
+		$.post('http://esx_aiomenu/toggleid', JSON.stringify({}));
+		
+	});
+	
+	$(".voice").click(function(){
+		$.post('http://esx_aiomenu/NUIsetVoice', JSON.stringify({}));
+		
+	});
+	
+	$(".phone_num").click(function(){
+		$.post('http://esx_aiomenu/togglephone', JSON.stringify({}));
+		
+	});
+	
+	$("#inv_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenInventory', JSON.stringify({}));
+	});
+	
+	$("#amb_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenAmbulance', JSON.stringify({}));
+	});
+	
+	$("#pol_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenPolice', JSON.stringify({}));
+	});
+	
+	$("#mec_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenMechanic', JSON.stringify({}));
+	});
+	
+	$("#fire_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenFire', JSON.stringify({}));
+	});
+	
+	$("#taxi_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenTaxi', JSON.stringify({}));
+	});
+	
+	$("#phone_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenPhone', JSON.stringify({}));
+	});
+	
+	$("#invoice_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenInvoices', JSON.stringify({}));
+	});
+	
+	$("#anim_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIopenAnimations', JSON.stringify({}));
+	});
+	
+	$("#esx_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIESXActions', JSON.stringify({}));
+		
+	});
+	
+	$("#job_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIJobActions', JSON.stringify({}));
+		
+	});
+	
+	$("#gen2_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIGenActions', JSON.stringify({}));
+		
+	});
+	
+	$("#gen3_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIGenActions', JSON.stringify({}));
+		
+	});
+	
+	$("#gen4_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIGenActions', JSON.stringify({}));
+		
+	});
+	
+	$("#gen5_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIGenActions', JSON.stringify({}));
+		
+	});
+	
+	$("#veh_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIVehicleActions', JSON.stringify({}));
+		
+	});
+	
+	$("#veh2_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIVehicleActions', JSON.stringify({}));
+		
+	});
+	
+	$("#veh3_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIVehicleActions', JSON.stringify({}));
+		
+	});
+	
+	$("#door_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIDoorActions', JSON.stringify({}));
+		
+	});
+	
+	$("#window_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUIWindowActions', JSON.stringify({}));
+		
+	});
+	
+	$("#char_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUICharActions', JSON.stringify({}));
+		
+	});
+	
+	$("#new_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		$.post('http://esx_aiomenu/NUInewCharacter', JSON.stringify({}));
+	});
+	
+	$("#exitesx_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$("#exitgen_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$("#exitchar_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));       
+	});
+	
+	$("#exitjob_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$("#exitveh_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$("#exitveh2_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$("#exitveh3_gui").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+	});
+	
+	$(".toggle_engine").click(function(){
+		$.post('http://esx_aiomenu/toggleEngineOnOff', JSON.stringify({}));
+	});
+	
+	$(".lock").click(function(){
+		$.post('http://esx_aiomenu/toggleVehicleLocks', JSON.stringify({}));
+	});
+	
+	$(".list_char").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIlistCharacters', JSON.stringify({}));
+	});
+	
+	$(".change_char").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIchangeCharacters', JSON.stringify({}));
+	});
+	
+	$(".delete_char").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+		$.post('http://esx_aiomenu/NUIdeleteCharacters', JSON.stringify({}));
+	});
+	
+	$(".toggle_fldoor").click(function(){
+		$.post('http://esx_aiomenu/toggleFrontLeftDoor', JSON.stringify({}));
+	});
+	
+	$(".toggle_frdoor").click(function(){
+		$.post('http://esx_aiomenu/toggleFrontRightDoor', JSON.stringify({}));
+	});
+	
+	$(".toggle_rldoor").click(function(){
+		$.post('http://esx_aiomenu/toggleBackLeftDoor', JSON.stringify({}));
+	});
+	
+	$(".toggle_rrdoor").click(function(){
+		$.post('http://esx_aiomenu/toggleBackRightDoor', JSON.stringify({}));
+	});
+	
+	$(".toggle_hood").click(function(){
+		$.post('http://esx_aiomenu/toggleHood', JSON.stringify({}));
+	});
+	
+	$(".toggle_trunk").click(function(){
+		$.post('http://esx_aiomenu/toggleTrunk', JSON.stringify({}));
+	});
+	
+	$(".toggle_windowsup").click(function(){
+		$.post('http://esx_aiomenu/toggleWindowsUp', JSON.stringify({}));
+	});
+	
+	$(".toggle_windowsdown").click(function(){
+		$.post('http://esx_aiomenu/toggleWindowsDown', JSON.stringify({}));
+	});
+        
+	$("#listCharExitBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var listbtn = document.getElementById("listcharacter1");
+		if (listbtn.hasChildNodes()) {
+			listbtn.removeChild(listbtn.childNodes[0]);
+		}
+		var listbtn2 = document.getElementById("listcharacter2");
+		if (listbtn2.hasChildNodes()) {
+			listbtn2.removeChild(listbtn2.childNodes[0]);
+		}
+		var listbtn3 = document.getElementById("listcharacter3");
+		if (listbtn3.hasChildNodes()) {
+			listbtn3.removeChild(listbtn3.childNodes[0]);
+		}
+		var listbtn4 = document.getElementById("listCharBackBtn");
+		if (listbtn4.hasChildNodes()) {
+			listbtn4.removeChild(listbtn4.childNodes[0]);
+		}
+		var listbtn5 = document.getElementById("listCharExitBtn");
+		if (listbtn5.hasChildNodes()) {
+			listbtn5.removeChild(listbtn5.childNodes[0]);
+		}
+		$('.list').hide()
+	});
+	
+	$("#changeCharExitBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var changebtn = document.getElementById("changecharacter1");
+		if (changebtn.hasChildNodes()) {
+			changebtn.removeChild(changebtn.childNodes[0]);
+		}
+		var changebtn2 = document.getElementById("changecharacter2");
+		if (changebtn2.hasChildNodes()) {
+			changebtn2.removeChild(changebtn2.childNodes[0]);
+		}
+		var changebtn3 = document.getElementById("changecharacter3");
+		if (changebtn3.hasChildNodes()) {
+			changebtn3.removeChild(changebtn3.childNodes[0]);
+		}
+		var changebtn4 = document.getElementById("changeCharBackBtn");
+		if (changebtn4.hasChildNodes()) {
+			changebtn4.removeChild(changebtn4.childNodes[0]);
+		}
+		var changebtn5 = document.getElementById("changeCharExitBtn");
+		if (changebtn5.hasChildNodes()) {
+			changebtn5.removeChild(changebtn5.childNodes[0]);
+		}
+		$('.change').hide()
+	});
+	
+	$("#deleteCharExitBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var deletebtn = document.getElementById("deletecharacter1");
+		if (deletebtn.hasChildNodes()) {
+			deletebtn.removeChild(deletebtn.childNodes[0]);
+		}
+		var deletebtn2 = document.getElementById("deletecharacter2");
+		if (deletebtn2.hasChildNodes()) {
+			deletebtn2.removeChild(deletebtn2.childNodes[0]);
+		}
+		var deletebtn3 = document.getElementById("deletecharacter3");
+		if (deletebtn3.hasChildNodes()) {
+			deletebtn3.removeChild(deletebtn3.childNodes[0]);
+		}
+		var deletebtn4 = document.getElementById("deleteCharBackBtn");
+		if (deletebtn4.hasChildNodes()) {
+			deletebtn4.removeChild(deletebtn4.childNodes[0]);
+		}
+		var deletebtn5 = document.getElementById("deleteCharExitBtn");
+		if (deletebtn5.hasChildNodes()) {
+			deletebtn5.removeChild(deletebtn5.childNodes[0]);
+		}
+		$('.delete').hide()
+	});
+	
+	$("#listCharBackBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var listbtn = document.getElementById("listcharacter1");
+		if (listbtn.hasChildNodes()) {
+			listbtn.removeChild(listbtn.childNodes[0]);
+		}
+		var listbtn2 = document.getElementById("listcharacter2");
+		if (listbtn2.hasChildNodes()) {
+			listbtn2.removeChild(listbtn2.childNodes[0]);
+		}
+		var listbtn3 = document.getElementById("listcharacter3");
+		if (listbtn3.hasChildNodes()) {
+			listbtn3.removeChild(listbtn3.childNodes[0]);
+		}
+		var listbtn4 = document.getElementById("listCharBackBtn");
+		if (listbtn4.hasChildNodes()) {
+			listbtn4.removeChild(listbtn4.childNodes[0]);
+		}
+		var listbtn5 = document.getElementById("listCharExitBtn");
+		if (listbtn5.hasChildNodes()) {
+			listbtn5.removeChild(listbtn5.childNodes[0]);
+		}
+		$('.list').hide()
+        $.post('http://esx_aiomenu/NUICharActions', JSON.stringify({}));
+	});
+	
+	$("#changeCharBackBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var changebtn = document.getElementById("changecharacter1");
+		if (changebtn.hasChildNodes()) {
+			changebtn.removeChild(changebtn.childNodes[0]);
+		}
+		var changebtn2 = document.getElementById("changecharacter2");
+		if (changebtn2.hasChildNodes()) {
+			changebtn2.removeChild(changebtn2.childNodes[0]);
+		}
+		var changebtn3 = document.getElementById("changecharacter3");
+		if (changebtn3.hasChildNodes()) {
+			changebtn3.removeChild(changebtn3.childNodes[0]);
+		}
+		var changebtn4 = document.getElementById("changeCharBackBtn");
+		if (changebtn4.hasChildNodes()) {
+			changebtn4.removeChild(changebtn4.childNodes[0]);
+		}
+		var changebtn5 = document.getElementById("changeCharExitBtn");
+		if (changebtn5.hasChildNodes()) {
+			changebtn5.removeChild(changebtn5.childNodes[0]);
+		}
+		$('.change').hide()
+        $.post('http://esx_aiomenu/NUICharActions', JSON.stringify({}));
+	});
+	
+	$("#deleteCharBackBtn").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var deletebtn = document.getElementById("deletecharacter1");
+		if (deletebtn.hasChildNodes()) {
+			deletebtn.removeChild(deletebtn.childNodes[0]);
+		}
+		var deletebtn2 = document.getElementById("deletecharacter2");
+		if (deletebtn2.hasChildNodes()) {
+			deletebtn2.removeChild(deletebtn2.childNodes[0]);
+		}
+		var deletebtn3 = document.getElementById("deletecharacter3");
+		if (deletebtn3.hasChildNodes()) {
+			deletebtn3.removeChild(deletebtn3.childNodes[0]);
+		}
+		var deletebtn4 = document.getElementById("deleteCharBackBtn");
+		if (deletebtn4.hasChildNodes()) {
+			deletebtn4.removeChild(deletebtn4.childNodes[0]);
+		}
+		var deletebtn5 = document.getElementById("deleteCharExitBtn");
+		if (deletebtn5.hasChildNodes()) {
+			deletebtn5.removeChild(deletebtn5.childNodes[0]);
+		}
+		$('.delete').hide()
+        $.post('http://esx_aiomenu/NUICharActions', JSON.stringify({}));
+	});
+	
+	$(".dchar1").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var deletebtn = document.getElementById("deletecharacter1");
+		if (deletebtn.hasChildNodes()) {
+			deletebtn.removeChild(deletebtn.childNodes[0]);
+		}
+		var deletebtn2 = document.getElementById("deletecharacter2");
+		if (deletebtn2.hasChildNodes()) {
+			deletebtn2.removeChild(deletebtn2.childNodes[0]);
+		}
+		var deletebtn3 = document.getElementById("deletecharacter3");
+		if (deletebtn3.hasChildNodes()) {
+			deletebtn3.removeChild(deletebtn3.childNodes[0]);
+		}
+		var deletebtn4 = document.getElementById("deleteCharBackBtn");
+		if (deletebtn4.hasChildNodes()) {
+			deletebtn4.removeChild(deletebtn4.childNodes[0]);
+		}
+		var deletebtn5 = document.getElementById("deleteCharExitBtn");
+		if (deletebtn5.hasChildNodes()) {
+			deletebtn5.removeChild(deletebtn5.childNodes[0]);
+		}
+		$('.delete').hide()
+        $.post('http://esx_aiomenu/NUIDelChar1', JSON.stringify({}));
+	});
+	
+	$(".dchar2").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var deletebtn = document.getElementById("deletecharacter1");
+		if (deletebtn.hasChildNodes()) {
+			deletebtn.removeChild(deletebtn.childNodes[0]);
+		}
+		var deletebtn2 = document.getElementById("deletecharacter2");
+		if (deletebtn2.hasChildNodes()) {
+			deletebtn2.removeChild(deletebtn2.childNodes[0]);
+		}
+		var deletebtn3 = document.getElementById("deletecharacter3");
+		if (deletebtn3.hasChildNodes()) {
+			deletebtn3.removeChild(deletebtn3.childNodes[0]);
+		}
+		var deletebtn4 = document.getElementById("deleteCharBackBtn");
+		if (deletebtn4.hasChildNodes()) {
+			deletebtn4.removeChild(deletebtn4.childNodes[0]);
+		}
+		var deletebtn5 = document.getElementById("deleteCharExitBtn");
+		if (deletebtn5.hasChildNodes()) {
+			deletebtn5.removeChild(deletebtn5.childNodes[0]);
+		}
+		$('.delete').hide()
+        $.post('http://esx_aiomenu/NUIDelChar2', JSON.stringify({}));
+	});
+	
+	$(".dchar3").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var deletebtn = document.getElementById("deletecharacter1");
+		if (deletebtn.hasChildNodes()) {
+			deletebtn.removeChild(deletebtn.childNodes[0]);
+		}
+		var deletebtn2 = document.getElementById("deletecharacter2");
+		if (deletebtn2.hasChildNodes()) {
+			deletebtn2.removeChild(deletebtn2.childNodes[0]);
+		}
+		var deletebtn3 = document.getElementById("deletecharacter3");
+		if (deletebtn3.hasChildNodes()) {
+			deletebtn3.removeChild(deletebtn3.childNodes[0]);
+		}
+		var deletebtn4 = document.getElementById("deleteCharBackBtn");
+		if (deletebtn4.hasChildNodes()) {
+			deletebtn4.removeChild(deletebtn4.childNodes[0]);
+		}
+		var deletebtn5 = document.getElementById("deleteCharExitBtn");
+		if (deletebtn5.hasChildNodes()) {
+			deletebtn5.removeChild(deletebtn5.childNodes[0]);
+		}
+		$('.delete').hide()
+        $.post('http://esx_aiomenu/NUIDelChar3', JSON.stringify({}));
+	});
+	
+	$(".schar1").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var changebtn = document.getElementById("changecharacter1");
+		if (changebtn.hasChildNodes()) {
+			changebtn.removeChild(changebtn.childNodes[0]);
+		}
+		var changebtn2 = document.getElementById("changecharacter2");
+		if (changebtn2.hasChildNodes()) {
+			changebtn2.removeChild(changebtn2.childNodes[0]);
+		}
+		var changebtn3 = document.getElementById("changecharacter3");
+		if (changebtn3.hasChildNodes()) {
+			changebtn3.removeChild(changebtn3.childNodes[0]);
+		}
+		var changebtn4 = document.getElementById("changeCharBackBtn");
+		if (changebtn4.hasChildNodes()) {
+			changebtn4.removeChild(changebtn4.childNodes[0]);
+		}
+		var changebtn5 = document.getElementById("changeCharExitBtn");
+		if (changebtn5.hasChildNodes()) {
+			changebtn5.removeChild(changebtn5.childNodes[0]);
+		}
+		$('.change').hide()
+        $.post('http://esx_aiomenu/NUISelChar1', JSON.stringify({}));
+	});
+	
+	$(".schar2").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var changebtn = document.getElementById("changecharacter1");
+		if (changebtn.hasChildNodes()) {
+			changebtn.removeChild(changebtn.childNodes[0]);
+		}
+		var changebtn2 = document.getElementById("changecharacter2");
+		if (changebtn2.hasChildNodes()) {
+			changebtn2.removeChild(changebtn2.childNodes[0]);
+		}
+		var changebtn3 = document.getElementById("changecharacter3");
+		if (changebtn3.hasChildNodes()) {
+			changebtn3.removeChild(changebtn3.childNodes[0]);
+		}
+		var changebtn4 = document.getElementById("changeCharBackBtn");
+		if (changebtn4.hasChildNodes()) {
+			changebtn4.removeChild(changebtn4.childNodes[0]);
+		}
+		var changebtn5 = document.getElementById("changeCharExitBtn");
+		if (changebtn5.hasChildNodes()) {
+			changebtn5.removeChild(changebtn5.childNodes[0]);
+		}
+		$('.change').hide()
+        $.post('http://esx_aiomenu/NUISelChar2', JSON.stringify({}));
+	});
+	
+	$(".schar3").click(function(){
+		$('.general').css('display', 'none')
+		$('.esx').css('display', 'none')
+		$('.jobs').css('display', 'none')
+		$('.vehicles').css('display', 'none')
+		$('.doors').css('display', 'none')
+		$('.windows').css('display', 'none')
+		$('.characters').css('display', 'none')
+        $('.listChar').css('display', 'none')
+        $('.changeChar').css('display', 'none')
+        $('.deleteChar').css('display', 'none')
+        $.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+		var changebtn = document.getElementById("changecharacter1");
+		if (changebtn.hasChildNodes()) {
+			changebtn.removeChild(changebtn.childNodes[0]);
+		}
+		var changebtn2 = document.getElementById("changecharacter2");
+		if (changebtn2.hasChildNodes()) {
+			changebtn2.removeChild(changebtn2.childNodes[0]);
+		}
+		var changebtn3 = document.getElementById("changecharacter3");
+		if (changebtn3.hasChildNodes()) {
+			changebtn3.removeChild(changebtn3.childNodes[0]);
+		}
+		var changebtn4 = document.getElementById("changeCharBackBtn");
+		if (changebtn4.hasChildNodes()) {
+			changebtn4.removeChild(changebtn4.childNodes[0]);
+		}
+		var changebtn5 = document.getElementById("changeCharExitBtn");
+		if (changebtn5.hasChildNodes()) {
+			changebtn5.removeChild(changebtn5.childNodes[0]);
+		}
+		$('.change').hide()
+        $.post('http://esx_aiomenu/NUISelChar3', JSON.stringify({}));
+	});
+	
+	document.onkeyup = function (data) {
+		if (data.which == 27) { // Escape key
+			$('.general').css('display', 'none')
+			$('.esx').css('display', 'none')
+			$('.jobs').css('display', 'none')
+			$('.vehicles').css('display', 'none')
+			$('.doors').css('display', 'none')
+			$('.windows').css('display', 'none')
+			$('.characters').css('display', 'none')
+			$('.listChar').css('display', 'none')
+			$('.changeChar').css('display', 'none')
+			$('.deleteChar').css('display', 'none')
+			var listbtn = document.getElementById("listcharacter1");
+			if (listbtn.hasChildNodes()) {
+				listbtn.removeChild(listbtn.childNodes[0]);
+			}
+			var listbtn2 = document.getElementById("listcharacter2");
+			if (listbtn2.hasChildNodes()) {
+				listbtn2.removeChild(listbtn2.childNodes[0]);
+			}
+			var listbtn3 = document.getElementById("listcharacter3");
+			if (listbtn3.hasChildNodes()) {
+				listbtn3.removeChild(listbtn3.childNodes[0]);
+			}
+			var listbtn4 = document.getElementById("listCharBackBtn");
+			if (listbtn4.hasChildNodes()) {
+				listbtn4.removeChild(listbtn4.childNodes[0]);
+			}
+			var listbtn5 = document.getElementById("listCharExitBtn");
+			if (listbtn5.hasChildNodes()) {
+				listbtn5.removeChild(listbtn5.childNodes[0]);
+			}
+			var changebtn = document.getElementById("changecharacter1");
+			if (changebtn.hasChildNodes()) {
+				changebtn.removeChild(changebtn.childNodes[0]);
+			}
+			var changebtn2 = document.getElementById("changecharacter2");
+			if (changebtn2.hasChildNodes()) {
+				changebtn2.removeChild(changebtn2.childNodes[0]);
+			}
+			var changebtn3 = document.getElementById("changecharacter3");
+			if (changebtn3.hasChildNodes()) {
+				changebtn3.removeChild(changebtn3.childNodes[0]);
+			}
+			var changebtn4 = document.getElementById("changeCharBackBtn");
+			if (changebtn4.hasChildNodes()) {
+				changebtn4.removeChild(changebtn4.childNodes[0]);
+			}
+			var changebtn5 = document.getElementById("changeCharExitBtn");
+			if (changebtn5.hasChildNodes()) {
+				changebtn5.removeChild(changebtn5.childNodes[0]);
+			}
+			var deletebtn = document.getElementById("deletecharacter1");
+			if (deletebtn.hasChildNodes()) {
+				deletebtn.removeChild(deletebtn.childNodes[0]);
+			}
+			var deletebtn2 = document.getElementById("deletecharacter2");
+			if (deletebtn2.hasChildNodes()) {
+				deletebtn2.removeChild(deletebtn2.childNodes[0]);
+			}
+			var deletebtn3 = document.getElementById("deletecharacter3");
+			if (deletebtn3.hasChildNodes()) {
+				deletebtn3.removeChild(deletebtn3.childNodes[0]);
+			}
+			var deletebtn4 = document.getElementById("deleteCharBackBtn");
+			if (deletebtn4.hasChildNodes()) {
+				deletebtn4.removeChild(deletebtn4.childNodes[0]);
+			}
+			var deletebtn5 = document.getElementById("deleteCharExitBtn");
+			if (deletebtn5.hasChildNodes()) {
+				deletebtn5.removeChild(deletebtn5.childNodes[0]);
+			}
+			$.post('http://esx_aiomenu/NUIFocusOff', JSON.stringify({}));
+			$('.list').hide()
+			$('.change').hide()
+			$('.delete').hide()
+		}
+	};
+
+	</script>
+</html>

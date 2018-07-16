@@ -1,0 +1,54 @@
+<html>
+    
+    <head>    
+        <meta charset="utf-8"/>
+        <link type ="text/css" rel ="stylesheet" href ="css/icomoon.css"/>        
+        <link type ="text/css" rel ="stylesheet" href ="css/index.css"/>
+        <link type ="text/css" rel ="stylesheet" href ="css/colors.css"/>
+    </head>
+
+    <body>
+        <img id="background"/>
+        <img id="background2"/>
+
+        <img id="cursor"/>
+
+        <div id="music-info">
+            <p id="now-playing">Now playing: n.a.</p>
+            <div id="play-button" class="icon-button icon-pause2" onclick="OnPlayClick()"></div>
+            <div id="skip-button" class="icon-button icon-next2" onclick="OnSkipClick()"></div>
+            <input type="range" min="1" max="100" id="volumeSlider">
+        </div>
+        
+        <img id="logo"/>
+
+        <div class="content-container">
+            <span>
+                <p id="message" class="loading-text">Hold on, crushing snails.... &#x1f40c; &#x1f528;</p>
+                <p class="loading-text stick-to-right"><span id="progress-bar-value">0</span>%</p>
+            </span>
+        </div>
+          
+        <div class="content-container">
+            <progress id="pb0" class="hide" min="0" max="100" value="0"></progress>
+            <progress id="pb1" class="hide" min="0" max="100" value="0"></progress>
+            <progress id="pb2" class="hide" min="0" max="100" value="0"></progress>
+            <progress id="pb3" class="hide" min="0" max="100" value="0"></progress>
+            <progress id="pb4" class="hide" min="0" max="100" value="0"></progress>          
+        </div> 
+
+        <ul id="log"></ul>    
+
+        <div id="player"></div>
+    </body>
+
+    <script src="js/synn.js"></script>    
+    <script src="js/config.js"></script>
+    <script src="js/logger.js"></script>    
+    <script src="js/progressbar-main.js"></script>
+    <script src="js/progressbar-handler.js"></script>
+    <script src="js/progressbar-renderer.js"></script>
+    <script src="js/music-handler.js"></script>
+    <script src="js/music-controls.js"></script>
+    <script src="js/background-handler.js"></script>
+</html>

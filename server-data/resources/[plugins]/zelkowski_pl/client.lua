@@ -1,0 +1,12 @@
+RegisterNetEvent("PokaKordy")
+AddEventHandler("PokaKordy3", function()
+		x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+	    local PlayerName = GetPlayerName()
+	    TriggerServerEvent("PokaKordy2", PlayerName , x , y , z)			
+end)
+
+AddEventHandler("PokaKordy", function()
+		x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+	    local PlayerName = GetPlayerName()
+    TriggerEvent("chatMessage", "", { 0, 200, 0 }, "\nX:" .. x .. "\nY:" .. y .. "\nZ:" .. z .. " \n")
+end)
