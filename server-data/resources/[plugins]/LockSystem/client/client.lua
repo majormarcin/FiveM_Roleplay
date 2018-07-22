@@ -63,7 +63,7 @@ Citizen.CreateThread(function()
                                 vehicle.lock()
                                 time = 0
                             else
-                                TriggerEvent("ls:notify", "Musisz odczekać " .. (timer / 1000) .." sekund")
+                                TriggerEvent("ls:notify", "You have to wait " .. (timer / 1000) .." seconds")
                             end
                         else
                             TriggerEvent("ls:notify", "The keys aren't inside")
@@ -175,7 +175,7 @@ AddEventHandler("ls:getHasOwner", function(hasOwner, localVehId, localVehPlate, 
 
         TriggerEvent("ls:notify", getRandomMsg())
     else
-        TriggerEvent("ls:notify", "Ten pojazd nie należy do Ciebie")
+        TriggerEvent("ls:notify", "This vehicle is not yours")
     end
 end)
 
@@ -192,7 +192,7 @@ AddEventHandler("ls:newVehicle", function(id, plate, lockStatus)
         vehicles[plate] = newVehicle()
         vehicles[plate].__construct(id, plate, lockStatus)
     else
-        print("Nie można utworzyć pojazdu. Brakuje tablic")
+        print("Can't create the vehicle instance. Missing argument PLATE")
     end
 end)
 
