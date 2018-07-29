@@ -3,8 +3,6 @@ Locales['fi'] = {
   ['cloakroom'] = 'vaatelokero',
   ['citizen_wear'] = 'siviiliasu',
   ['police_wear'] = 'poliisiasu',
-  ['sheriff_wear'] = 'sheriffiasu',
-  ['lieutenant_wear'] = 'swattiasu',
   ['gilet_wear'] = 'huomioliivi',
   ['bullet_wear'] = 'luotiliivi',
   ['no_outfit'] = 'täällä ei ole sinulle sopivaa asua',
@@ -22,7 +20,14 @@ Locales['fi'] = {
   ['vehicle_out'] = 'ajoneuvo on jo ulkona tallista',
   ['vehicle_spawner'] = 'paina ~INPUT_CONTEXT~ ottaaksesi auton ulos',
   ['store_vehicle'] = 'paina ~INPUT_CONTEXT~ laittaaksesi auto talliin',
-  ['service_max'] = 'maksimi määrä poliiseja: %s/%s',
+  -- Service
+  ['service_max'] = 'you cannot enter service, max officers in service: %s/%s',
+  ['service_not'] = 'you have not entered service! You\'ll have to get changed first.',
+  ['service_anonunce'] = 'service information',
+  ['service_in'] = 'you\'ve entered service, welcome!',
+  ['service_in_announce'] = 'operator ~y~%s~s~ has entered service!',
+  ['service_out'] = 'you have left service.',
+  ['service_out_announce'] = 'operator ~y~%s~s~ has left their service.',
   -- Action Menu
   ['citizen_interaction'] = 'siviilin vuorovaikutus',
   ['vehicle_interaction'] = 'ajoneuvon vuorovaikutus',
@@ -41,6 +46,7 @@ Locales['fi'] = {
   ['license_revoked'] = 'sinun ~b~%s~s~ ~y~kumottiin~s~!',
   ['licence_you_revoked'] = 'sinä kumosit ~b~%s~s~ mikä kuului henkilölle ~y~%s~s~',
   ['no_players_nearby'] = 'ei pelaajia lähettyvillä',
+  ['being_searched'] = 'you are being ~y~searched~s~ by the ~b~Police~s~',
   -- Vehicle interaction
   ['vehicle_info'] = 'ajoneuvon tiedot',
   ['pick_lock'] = 'tiirikoi ovet',

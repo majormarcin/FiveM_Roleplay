@@ -9,8 +9,8 @@
 
 --  Server side
 
-owners = {} -- owners[plate] = identifier
-secondOwners = {} -- secondOwners[plate] = {identifier, identifier, ...}
+local owners = {} -- owners[plate] = identifier
+local secondOwners = {} -- secondOwners[plate] = {identifier, identifier, ...}
 
 RegisterServerEvent("ls:retrieveVehiclesOnconnect")
 AddEventHandler("ls:retrieveVehiclesOnconnect", function()
@@ -124,20 +124,4 @@ AddEventHandler('InteractSound_SV:PlayWithinDistance', function(maxDistance, sou
     TriggerClientEvent('InteractSound_CL:PlayWithinDistance', -1, source, maxDistance, soundFile, soundVolume)
 end)
 
-if globalConf['SERVER'].versionChecker then
-	PerformHttpRequest("https://www.dropbox.com/s/3m0pubbh3qqfqyy/version.txt?dl=0", function(err, rText, headers)
-		if rText then
-			if tonumber(rText) > tonumber(_VERSION) then
-				print("\n---------------------------------------------------")
-				print("LockSystem : An update is available !")
-				print("---------------------------------------------------")
-				print("Current : " .. _VERSION)
-				print("Latest  : " .. rText .. "\n")
-			end
-		else
-			print("\n---------------------------------------------------")
-			print("Unable to find the version.")
-			print("---------------------------------------------------\n")
-		end
-	end, "GET", "", {what = 'this'})
-end
+

@@ -7,7 +7,10 @@
 					'<span class="sender">{{sender}}</span><br/><span class="phone-number">#{{phoneNumber}}</span>' +
 				'</div>' +
 			'</div>' +
-			'<div class="actions"><span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span></div>' +
+			'<div class="actions">' +
+				'<span class="del-contact" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}">X</span>' +
+				'<span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span>' +
+			'</div>' +
 		'</div>'
 	;
 	
@@ -115,10 +118,20 @@
 			}
 
 		} else {
-			contactHTML = '<div class="contact no-item online"><p class="no-item">Brak kontaktów</p></div>';
+			contactHTML = '<div class="contact no-item online"><p class="no-item">Brak Kontaktów</p></div>';
 		}
 		
 		$('#phone #repertoire .repertoire-list').html(contactHTML);
+
+		$('.contact .del-contact').click(function() {
+			let name = $(this).attr('data-contact-name');
+			let phoneNumber = $(this).attr('data-contact-number');
+
+			$.post('http://esx_phone/remove_contact', JSON.stringify({
+				contactName: name,
+				phoneNumber: phoneNumber
+			}))
+		});
 	
 		$('.contact.online .new-msg').click(function() {
 			showNewMessage($(this).attr('data-contact-number'), $(this).attr('data-contact-name'));
@@ -237,7 +250,7 @@
 		
 		$('.message .ok-btn').click(function() {
 			$.post('http://esx_phone/send', JSON.stringify({
-				message: $(this).attr('data-contact-job') + ": Odebrane!",
+				message: $(this).attr('data-contact-job') + ": Otrzymane!",
 				number : $(this).attr('data-contact-number'),
 				anonyme: false
 			}))
@@ -383,7 +396,7 @@
 	});
 	
 	$('#btn-head-new-message').click(function() {
-		showNewMessage('', 'Nouveau message');
+		showNewMessage('', 'Nowa wiadomosc');
 	});
 	
 	$('#btn-head-new-contact').click(function() {
@@ -451,6 +464,10 @@
 			hideAddContact();
 		}
 
+		if(data.contactRemoved === true){
+			reloadPhone(data.phoneData);
+		}
+		
 		if(data.addSpecialContact === true){
 			addSpecialContact(data.name, data.number, data.base64Icon);
 		}

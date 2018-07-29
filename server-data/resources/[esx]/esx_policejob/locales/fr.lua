@@ -3,8 +3,6 @@ Locales['fr'] = {
   ['cloakroom'] = 'vestiaire',
   ['citizen_wear'] = 'tenue Civil',
   ['police_wear'] = 'tenue Policier',
-  ['sheriff_wear'] = 'tenue sheriff',
-  ['lieutenant_wear'] = 'tenue Swatt',
   ['gilet_wear'] = 'gilet orange',
   ['bullet_wear'] = 'gilet pare-balles',
   ['no_outfit'] = 'il n\'y a pas d\'uniforme à votre taille...',
@@ -22,7 +20,14 @@ Locales['fr'] = {
   ['vehicle_out'] = 'il y a déja un véhicule de sorti',
   ['vehicle_spawner'] = 'appuyez sur ~INPUT_CONTEXT~ pour sortir un véhicule',
   ['store_vehicle'] = 'appuyez sur ~INPUT_CONTEXT~ pour ranger le véhicule',
-  ['service_max'] = 'service complet: %s/%s',
+  -- Service
+  ['service_max'] = 'you cannot enter service, max officers in service: %s/%s',
+  ['service_not'] = 'you have not entered service! You\'ll have to get changed first.',
+  ['service_anonunce'] = 'service information',
+  ['service_in'] = 'you\'ve entered service, welcome!',
+  ['service_in_announce'] = 'operator ~y~%s~s~ has entered service!',
+  ['service_out'] = 'you have left service.',
+  ['service_out_announce'] = 'operator ~y~%s~s~ has left their service.',
   -- Action Menu
   ['citizen_interaction'] = 'interaction citoyen',
   ['vehicle_interaction'] = 'interaction véhicule',
@@ -41,6 +46,7 @@ Locales['fr'] = {
   ['license_revoked'] = 'votre ~b~%s~s~ a été ~y~révoqué~s~!',
   ['licence_you_revoked'] = 'vous avez révoqué un ~b~%s~s~ qui appartenait à ~y~%s~s~',
   ['no_players_nearby'] = 'aucun joueur à proximité',
+  ['being_searched'] = 'you are being ~y~searched~s~ by the ~b~Police~s~',
   -- Vehicle interaction
   ['vehicle_info'] = 'infos véhicule',
   ['pick_lock'] = 'crocheter véhicule',

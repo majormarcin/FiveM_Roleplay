@@ -31,15 +31,19 @@ client_scripts {
 	'client/main.lua'
 }
 
-ui_page 'html/ui_pl.html'
+ui_page 'html/ui.html'
 
 files {
-	'html/ui_pl.html',
+	'html/ui.html',
+
 	'html/bankgothic.ttf',
 	'html/pdown.ttf',
+
 	'html/css/app.css',
+
 	'html/scripts/mustache.min.js',
-	'html/scripts/app_pl.js',
+	'html/scripts/app.js',
+
 	'html/img/cursor.png',
 	'html/img/keys/enter.png',
 	'html/img/keys/return.png',
@@ -55,3 +59,5 @@ files {
 	'html/img/icons/edit.png',
 	'html/img/icons/location.png'
 }
+
+dependency 'es_extended'

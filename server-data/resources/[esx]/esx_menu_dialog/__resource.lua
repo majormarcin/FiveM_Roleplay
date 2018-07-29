@@ -14,7 +14,7 @@ files {
 	'html/css/app.css',
 
 	'html/js/mustache.min.js',
-	'html/js/app_pl.js',
+	'html/js/app.js',
 
 	'html/fonts/pdown.ttf',
 	'html/fonts/bankgothic.ttf'
