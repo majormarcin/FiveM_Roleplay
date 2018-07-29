@@ -47,7 +47,7 @@ AddEventHandler('esx_status:loaded', function(status)
 		end
 	)
 
-	TriggerEvent('esx_status:registerStatus', 'thirst', 1000000, '#0059ff',
+	TriggerEvent('esx_status:registerStatus', 'thirst', 1000000, '#0C98F1',
 		function(status)
 			return true
 		end, function(status)

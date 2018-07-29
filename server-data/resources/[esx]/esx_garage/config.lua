@@ -9,7 +9,7 @@ Config.ZDiff                = 0.5
 Config.EnableOwnedVehicles  = true
 Config.MinimumHealthPercent = 0
 
-Config.Locale = 'fr'
+Config.Locale = 'pl'
 
 Config.Zones = {}
 
@@ -42,39 +42,39 @@ Config.Garages = {
 				Pos     = {x = 224.500, y = -998.695, z = -100.000},
 				Heading = 225.0
 			},
-		  {
+			{
 				Pos     = {x = 224.500, y = -994.630, z = -100.000},
 				Heading = 225.0
 			},
-		  {
+			{
 				Pos     = {x = 224.500, y = -990.255, z = -100.000},
 				Heading = 225.0
 			},
-		  {
+			{
 				Pos     = {x = 224.500, y = -986.628, z = -100.000},
 				Heading = 225.0
 			},
-		  {
+			{
 				Pos     = {x = 224.500, y = -982.496, z = -100.000},
 				Heading = 225.0
 			},
-		  {
+			{
 				Pos     = {x = 232.500, y = -982.496, z = -100.000},
 				Heading = 135.0
 			},
-		  {
+			{
 				Pos     = {x = 232.500, y = -986.628, z = -100.000},
 				Heading = 135.0
 			},
-		  {
+			{
 				Pos     = {x = 232.500, y = -990.255, z = -100.000},
 				Heading = 135.0
 			},
-		  {
+			{
 				Pos     = {x = 232.500, y = -994.630, z = -100.000},
 				Heading = 135.0
 			},
-		  {
+			{
 				Pos     = {x = 232.500, y = -998.695, z = -100.000},
 				Heading = 135.0
 			},
