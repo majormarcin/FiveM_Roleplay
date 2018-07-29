@@ -14,13 +14,23 @@ html, body {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 320px;
-	height: 250px;
+	height: 298px;
+	width: 480px;
 	background-color: rgba(0, 0, 0, 0.8);
-	color: white;
+	color: rgb(255, 255, 255);
 	padding: 5px;
 	overflow-y: auto;	
 	overflow-x: hidden;
+}
+
+#div1 {
+    position: absolute;
+    height: 298px;
+    width: 480px;
+	right: 80px;
+	bottom: 50px;
+    border: 0px solid blue;
+    perspective: 100px;
 }
 
 #phone {
@@ -29,23 +39,25 @@ html, body {
 	font-family: 'Catamaran', sans-serif;
 	font-weight: 400;
 	font-size: 12px;
-	width: 298px;
 	height: 480px;
+	width: 298px;
 	color: #212121;
 	position: absolute;
-	right: 50px;
+	right: 20px;
 	bottom: 0;
 	overflow: hidden;
 	cursor: default;
 	display: none;
+	transform-style: preserve-3d;
+    transform: rotateX(2deg) rotateY(-3deg);
 }
 
 #phone > .container {
 	position: absolute;
-    top: 59px;
-    left: 46px;
+    top: 20px;
+    left: 42px;
     width: 207px;
-    height: 365px;
+    height: 450px;
     background-repeat: no-repeat;
 	overflow: hidden;
 }
@@ -63,8 +75,8 @@ html, body {
 #phone-icon {
 	display: block;
 	position: absolute;
-  height: 12px;
-  line-height: 20px;
+  	height: 12px;
+  	line-height: 20px;
 	top: 4px;
 	right: 5px;
 }
@@ -80,9 +92,9 @@ html, body {
 }
 
 #phone .menu {
-  max-height: 320px;
-  overflow-y: scroll;  
-  z-index: 1;
+	max-height: 500px;
+  	overflow-y: scroll;  
+ 	z-index: 1;
 }
 
 #phone .menu .home {
@@ -137,7 +149,7 @@ html, body {
 	top: 0;
 	left: 207px;
 	width: 207px;
-	height: 365px;
+	height: 440px;
 	background-color: #dde1e8;
 	z-index: 1;
 	transition: left 0.25s ease;
@@ -153,7 +165,7 @@ html, body {
 	top: 50px;
 	left: 0;
 	width: 224px;
-	height: 315px;
+	height: 440px;
 	overflow-y: scroll;
 }
 
@@ -313,9 +325,9 @@ html, body {
     width: 207px;
     min-width: 207px;
     max-width: 207px;
-    height: 255px;
-    min-height: 255px;
-    max-height: 255px;
+    height: 330px;
+	min-height: 330px;
+    max-height: 330px;
     background-color: #f1f1f1;
     border: none;
     box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1) inset;

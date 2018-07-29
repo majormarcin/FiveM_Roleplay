@@ -1,2 +1,3 @@
-Config = {}
-Config.Locale = 'pl'
+Config                               = {}
+Config.Locale                        = 'en'
+Config.BuyPhone                      = true

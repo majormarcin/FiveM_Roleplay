@@ -7,10 +7,7 @@
 					'<span class="sender">{{sender}}</span><br/><span class="phone-number">#{{phoneNumber}}</span>' +
 				'</div>' +
 			'</div>' +
-			'<div class="actions">' +
-				'<span class="del-contact" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}">X</span>' +
-				'<span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span>' +
-			'</div>' +
+			'<div class="actions"><span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span></div>' +
 		'</div>'
 	;
 	
@@ -123,16 +120,6 @@
 		
 		$('#phone #repertoire .repertoire-list').html(contactHTML);
 	
-		$('.contact .del-contact').click(function() {
-			let name = $(this).attr('data-contact-name');
-			let phoneNumber = $(this).attr('data-contact-number');
-
-			$.post('http://esx_phone/remove_contact', JSON.stringify({
-				contactName: name,
-				phoneNumber: phoneNumber
-			}))
-		});
-
 		$('.contact.online .new-msg').click(function() {
 			showNewMessage($(this).attr('data-contact-number'), $(this).attr('data-contact-name'));
 		});
@@ -464,10 +451,6 @@
 			hideAddContact();
 		}
 
-		if(data.contactRemoved === true){
-			reloadPhone(data.phoneData);
-		}
-		
 		if(data.addSpecialContact === true){
 			addSpecialContact(data.name, data.number, data.base64Icon);
 		}

@@ -7,7 +7,10 @@
 					'<span class="sender">{{sender}}</span><br/><span class="phone-number">#{{phoneNumber}}</span>' +
 				'</div>' +
 			'</div>' +
-			'<div class="actions"><span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span></div>' +
+			'<div class="actions">' +
+				'<span class="del-contact" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}">X</span>' +
+				'<span class="new-msg newMsg-btn" data-contact-number="{{phoneNumberData}}" data-contact-name="{{senderData}}"></span>' +
+			'</div>' +
 		'</div>'
 	;
 	
@@ -47,12 +50,12 @@
 		$('#repertoire').removeClass('active');
 	}
 	
-	let showMessages = function(){	
+	let showMessages = function(){
 		$('#messages').addClass('active');
 		isMessagesOpen = true;
 	}
 
-	let hideMessages = function(){		
+	let hideMessages = function(){
 		$('#messages').removeClass('active');
 		isMessagesOpen = false;
 	}
@@ -77,7 +80,7 @@
 		$('.screen.active *').removeAttr('disabled');
 	}
 
-	let hideNewMessage = function() {		
+	let hideNewMessage = function() {
 		$('#writer').removeClass('active');
 		$('#writer_number').val('');
 		$('#writer_message').val('');
@@ -115,10 +118,20 @@
 			}
 
 		} else {
-			contactHTML = '<div class="contact no-item online"><p class="no-item">No contacts</p></div>';
+			contactHTML = '<div class="contact no-item online"><p class="no-item">Aucun contact</p></div>';
 		}
 		
 		$('#phone #repertoire .repertoire-list').html(contactHTML);
+
+		$('.contact .del-contact').click(function() {
+			let name = $(this).attr('data-contact-name');
+			let phoneNumber = $(this).attr('data-contact-number');
+
+			$.post('http://esx_phone/remove_contact', JSON.stringify({
+				contactName: name,
+				phoneNumber: phoneNumber
+			}))
+		});
 	
 		$('.contact.online .new-msg').click(function() {
 			showNewMessage($(this).attr('data-contact-number'), $(this).attr('data-contact-name'));
@@ -154,7 +167,7 @@
 		isPhoneShowed = true;
 	}
 
-	let hidePhone = function(){		
+	let hidePhone = function(){
 		$('#phone').hide();
 		isPhoneShowed = false;
 	}
@@ -177,7 +190,7 @@
 			
 			for(let i=0; i<messages.length; i++) {
 
-				let fromName   = "Unknown";
+				let fromName   = "Inconnu";
 				let fromNumber = messages[i].value;
 				let anonyme    = null;
 				
@@ -187,9 +200,9 @@
 				if(messages[i].anonyme) {
 					
 					if(messages[i].job == "player")
-						fromName = "Anonymous";
+						fromName = "Anonyme";
 
-					fromNumber = "Anonymous";
+					fromNumber = "Anonyme";
 					anonyme    = 'anonyme';
 
 				} else {
@@ -222,7 +235,7 @@
 				messageHTML = html + messageHTML;
 			}
 		} else {
-			messageHTML = '<div class="message no-item"><p class="no-item">No messages</p></div>';
+			messageHTML = '<div class="message no-item"><p class="no-item">Aucun messages</p></div>';
 		}
 		
 		$('#phone #messages .messages-list').html(messageHTML);
@@ -237,7 +250,7 @@
 		
 		$('.message .ok-btn').click(function() {
 			$.post('http://esx_phone/send', JSON.stringify({
-				message: $(this).attr('data-contact-job') + ": Received!",
+				message: $(this).attr('data-contact-job') + ": Bien reçu !",
 				number : $(this).attr('data-contact-number'),
 				anonyme: false
 			}))
@@ -299,7 +312,7 @@
 		$('.phone-icon').unbind('click');
 
 		$('#phone .menu .home').html(
-			'<li class="phone-icon" id="phone-icon-rep">Contacts</li>' +
+			'<li class="phone-icon" id="phone-icon-rep">Repertoire</li>' +
 			'<li class="phone-icon" id="phone-icon-msg">Messages</li>'
 		);
 
@@ -449,6 +462,10 @@
 		if(data.contactAdded === true){
 			reloadPhone(data.phoneData);
 			hideAddContact();
+		}
+
+		if(data.contactRemoved === true){
+			reloadPhone(data.phoneData);
 		}
 
 		if(data.addSpecialContact === true){

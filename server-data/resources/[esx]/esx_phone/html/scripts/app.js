@@ -50,12 +50,12 @@
 		$('#repertoire').removeClass('active');
 	}
 	
-	let showMessages = function(){
+	let showMessages = function(){	
 		$('#messages').addClass('active');
 		isMessagesOpen = true;
 	}
 
-	let hideMessages = function(){
+	let hideMessages = function(){		
 		$('#messages').removeClass('active');
 		isMessagesOpen = false;
 	}
@@ -80,7 +80,7 @@
 		$('.screen.active *').removeAttr('disabled');
 	}
 
-	let hideNewMessage = function() {
+	let hideNewMessage = function() {		
 		$('#writer').removeClass('active');
 		$('#writer_number').val('');
 		$('#writer_message').val('');
@@ -118,11 +118,11 @@
 			}
 
 		} else {
-			contactHTML = '<div class="contact no-item online"><p class="no-item">Aucun contact</p></div>';
+			contactHTML = '<div class="contact no-item online"><p class="no-item">Brak Kontaktow</p></div>';
 		}
 		
 		$('#phone #repertoire .repertoire-list').html(contactHTML);
-
+	
 		$('.contact .del-contact').click(function() {
 			let name = $(this).attr('data-contact-name');
 			let phoneNumber = $(this).attr('data-contact-number');
@@ -132,7 +132,7 @@
 				phoneNumber: phoneNumber
 			}))
 		});
-	
+
 		$('.contact.online .new-msg').click(function() {
 			showNewMessage($(this).attr('data-contact-number'), $(this).attr('data-contact-name'));
 		});
@@ -167,7 +167,7 @@
 		isPhoneShowed = true;
 	}
 
-	let hidePhone = function(){
+	let hidePhone = function(){		
 		$('#phone').hide();
 		isPhoneShowed = false;
 	}
@@ -190,7 +190,7 @@
 			
 			for(let i=0; i<messages.length; i++) {
 
-				let fromName   = "Inconnu";
+				let fromName   = "Nieznany";
 				let fromNumber = messages[i].value;
 				let anonyme    = null;
 				
@@ -200,9 +200,9 @@
 				if(messages[i].anonyme) {
 					
 					if(messages[i].job == "player")
-						fromName = "Anonyme";
+						fromName = "Anonim";
 
-					fromNumber = "Anonyme";
+					fromNumber = "Anonim";
 					anonyme    = 'anonyme';
 
 				} else {
@@ -235,7 +235,7 @@
 				messageHTML = html + messageHTML;
 			}
 		} else {
-			messageHTML = '<div class="message no-item"><p class="no-item">Aucun messages</p></div>';
+			messageHTML = '<div class="message no-item"><p class="no-item">Brak Wiadomosci</p></div>';
 		}
 		
 		$('#phone #messages .messages-list').html(messageHTML);
@@ -250,7 +250,7 @@
 		
 		$('.message .ok-btn').click(function() {
 			$.post('http://esx_phone/send', JSON.stringify({
-				message: $(this).attr('data-contact-job') + ": Bien reçu !",
+				message: $(this).attr('data-contact-job') + ": Odebrane!",
 				number : $(this).attr('data-contact-number'),
 				anonyme: false
 			}))
@@ -312,8 +312,8 @@
 		$('.phone-icon').unbind('click');
 
 		$('#phone .menu .home').html(
-			'<li class="phone-icon" id="phone-icon-rep">Repertoire</li>' +
-			'<li class="phone-icon" id="phone-icon-msg">Messages</li>'
+			'<li class="phone-icon" id="phone-icon-rep">Kontakty</li>' +
+			'<li class="phone-icon" id="phone-icon-msg">Wiadomosci</li>'
 		);
 
 		for(let i=0; i<specialContacts.length; i++){
@@ -396,7 +396,7 @@
 	});
 	
 	$('#btn-head-new-message').click(function() {
-		showNewMessage('', 'Nouveau message');
+		showNewMessage('', 'Nowa wiadomosc');
 	});
 	
 	$('#btn-head-new-contact').click(function() {

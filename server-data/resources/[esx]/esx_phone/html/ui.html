@@ -6,40 +6,52 @@
 	</head>
 	<body>
 
+		<div id="div1">
 		<div class="phone" id="phone">
-			
+
 			<div class="container">
-				
+
 				<div class="head">
 					<span id="phone-icon"><img src="./img/icons/signal.png" /></span>
 					<span id="phone-number">#123456</span>
 				</div>
-				
+
 				<div class="menu">
 					<ul class="home">
-						<li class="phone-icon" id="phone-icon-rep">Repertoire</li>
-						<li class="phone-icon" id="phone-icon-msg">Messages</li>
+						<li class="phone-icon" id="phone-icon-rep">Kontakty</li>
+						<li class="phone-icon" id="phone-icon-msg">Wiadomosc</li>
 					</ul>
 				</div>
 
 				<div id="repertoire" class="screen">
-				
-				<div class="head-screen"><span id="btn-head-back-rep" class="btn-head btn-head-back"></span>Répertoire<span id="btn-head-new-contact" class="btn-head btn-head-new"></span></div>
+
+				<div class="head-screen"><span id="btn-head-back-rep" class="btn-head btn-head-back"></span>Kontakty<span id="btn-head-new-contact" class="btn-head btn-head-new"></span></div>
 					<div class="container">
 						<div class="content-screen repertoire-list">
 							<div class="contact no-item online">
-								<p class="no-item">Aucun contact</p>
+								<p class="no-item">Brak Kontaktow</p>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div id="messages" class="screen">
-					<div class="head-screen"><span id="btn-head-back-msg" class="btn-head btn-head-back"></span>Messages<!--<span id="btn-head-new-message" class="btn-head btn-head-new"></span>--></div>
+					<div class="head-screen"><span id="btn-head-back-msg" class="btn-head btn-head-back"></span>Wiadomosc<!--<span id="btn-head-new-message" class="btn-head btn-head-new"></span>--></div>
 					<div class="container">
 						<div class="content-screen messages-list">
 							<div class="message no-item">
-								<p class="no-item">Aucun message</p>
+								<p class="no-item">Brak Wiadomosci</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="darknet" class="screen">
+					<div class="head-screen"><span id="btn-head-back-dknet" class="btn-head btn-head-back"></span>DeepWeb<!--<span id="btn-head-new-message" class="btn-head btn-head-new"></span>--></div>
+					<div class="container">
+						<div class="content-screen darknet-list">
+							<div class="darknet no-item">
+								<p class="no-item">Brak Wiadomosci</p>
 							</div>
 						</div>
 					</div>
@@ -50,33 +62,34 @@
 					<div class="container">
 						<div class="content-screen">
 							<input type="hidden" id="writer_number" value="0" />
-							<textarea id="writer_message" placeholder="Votre message"></textarea>
-							<label><input type="checkbox" id="writer_anonyme" value="true">Anonyme</label>
-							<button id="writer_cancel">Annuler</button>
-							<button id="writer_send" class="marged">Envoyer</button>
+							<textarea id="writer_message" placeholder="Your message"></textarea>
+							<label><input type="checkbox" id="writer_anonyme" value="true">Anonim</label>
+							<button id="writer_cancel">Anuluj</button>
+							<button id="writer_send" class="marged">Wyslij</button>
 						</div>
 					</div>
 				</div>
 
 				<div id="contact" class="screen">
-					<div class="head-screen"><span id="btn-head-back-contact" class="btn-head btn-head-back"></span>Ajouter un contact</div>
+					<div class="head-screen"><span id="btn-head-back-contact" class="btn-head btn-head-back"></span>Dodaj Kontakt</div>
 					<div class="container">
 						<div class="content-screen">
-							<input type="text" id="contact_name" placeholder="Nom" />
-							<input type="text" id="contact_number" placeholder="Numéro" />
-							<button id="contact_cancel">Annuler</button>
-							<button id="contact_send">Ajouter</button>
+							<input type="text" id="contact_name" placeholder="Name" />
+							<input type="text" id="contact_number" placeholder="Number" />
+							<button id="contact_cancel">Anuluj</button>
+							<button id="contact_send">Dodaj</button>
 						</div>
 					</div>
 				</div>
 
 			</div>
 		</div>
+		</div>
 
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
 		<script src="scripts/mustache.min.js"></script>
 		<script src="scripts/app.js"></script>
-		
+
 	</body>
 </html>

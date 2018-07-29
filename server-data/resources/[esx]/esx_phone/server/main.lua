@@ -14,10 +14,12 @@ function GenerateUniquePhoneNumber()
 		Citizen.Wait(20)
 		phoneNumber = math.random(10000, 99999)
 
-		local result = MySQL.Sync.fetchAll('SELECT COUNT(*) as count FROM users WHERE phone_number = @phoneNumber',
+		local result = MySQL.Sync.fetchAll(
+			'SELECT COUNT(*) as count FROM users WHERE phone_number = @phoneNumber',
 		{
 			['@phoneNumber'] = phoneNumber
-		})
+		}
+	)
 
 		local count = tonumber(result[1].count)
 
@@ -43,9 +45,36 @@ function GetDistpatchRequestId()
 	return requestId
 end
 
+--------- TRY OPEN PHONE ---------
+
+RegisterServerEvent('esx_phone:tryOpenPhone')
+AddEventHandler('esx_phone:tryOpenPhone', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	if xPlayer ~= nil then
+		if xPlayer.getInventoryItem('blackberry').count >= 1 then
+			TriggerClientEvent('esx_phone:openPhone', source)
+		else
+			sendNotification(source, 'Nie posiadasz Telefonu', 'warning', 2500)
+		end
+	end
+end)
+
+
+
 AddEventHandler('esx_phone:getDistpatchRequestId', function(cb)
 	cb(GetDistpatchRequestId())
 end)
+
+
+-------- ON RESOURCE START --------
+
+AddEventHandler('onResourceStart', function(ressource)
+	if ressource == 'esx_phone' then
+	  TriggerEvent('esx_phone:ready')
+	end
+  end)
+
 
 AddEventHandler('esx:playerLoaded', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -58,20 +87,24 @@ AddEventHandler('esx:playerLoaded', function(source)
 		end
 	end
 
-	MySQL.Async.fetchAll('SELECT * FROM users WHERE identifier = @identifier',
+	MySQL.Async.fetchAll(
+		'SELECT * FROM users WHERE identifier = @identifier',
 	{
 		['@identifier'] = xPlayer.identifier
-	}, function(result)
+	}, 
+	function(result)
 		local phoneNumber = result[1].phone_number
 
 		if phoneNumber == nil then
 			phoneNumber = GenerateUniquePhoneNumber()
 
-			MySQL.Async.execute('UPDATE users SET phone_number = @phone_number WHERE identifier = @identifier',
+			MySQL.Async.execute(
+				'UPDATE users SET phone_number = @phone_number WHERE identifier = @identifier',
 			{
 				['@identifier']   = xPlayer.identifier,
 				['@phone_number'] = phoneNumber
-			})
+			}
+		)
 		end
 
 		TriggerClientEvent('esx_phone:setPhoneNumberSource', -1, phoneNumber, source)
@@ -93,17 +126,20 @@ AddEventHandler('esx:playerLoaded', function(source)
 
 		local contacts = {}
 
-		MySQL.Async.fetchAll('SELECT * FROM user_contacts WHERE identifier = @identifier ORDER BY name ASC',
+		MySQL.Async.fetchAll(
+			'SELECT * FROM user_contacts WHERE identifier = @identifier ORDER BY name ASC',
 		{
 			['@identifier'] = xPlayer.identifier
-		}, function(result2)
+		}, 
+		function(result2)
 
 			for i=1, #result2, 1 do
 
 				table.insert(contacts, {
 					name   = result2[i].name,
 					number = result2[i].number,
-				})
+				}
+			)
 			end
 
 			xPlayer.set('contacts', contacts)
@@ -218,7 +254,8 @@ AddEventHandler('esx_phone:addPlayerContact', function(phoneNumber, contactName)
 	'SELECT phone_number FROM users WHERE phone_number = @number',
 	{
 		['@number'] = phoneNumber
-	}, function(result)
+	}, 
+	function(result)
 		if result[1] ~= nil then
 			if phoneNumber == xPlayer.get('phoneNumber') then
 				TriggerClientEvent('esx:showNotification', _source, _U('cannot_add_self'))
@@ -245,7 +282,8 @@ AddEventHandler('esx_phone:addPlayerContact', function(phoneNumber, contactName)
 					['@identifier'] = xPlayer.identifier,
 					['@name']       = contactName,
 					['@number']     = phoneNumber
-				}, function(rowsChanged)
+				}, 
+				function(rowsChanged)
 					TriggerClientEvent('esx:showNotification', _source, _U('contact_added'))
 					TriggerClientEvent('esx_phone:addContact', _source, contactName, phoneNumber)
 				end)
@@ -263,10 +301,12 @@ AddEventHandler('esx_phone:removePlayerContact', function(phoneNumber, contactNa
 	local xPlayer     = ESX.GetPlayerFromId(_source)
 	local foundNumber = false
 
-	MySQL.Async.fetchAll('SELECT phone_number FROM users WHERE phone_number = @number',
+	MySQL.Async.fetchAll(
+		'SELECT phone_number FROM users WHERE phone_number = @number',
 	{
 		['@number'] = phoneNumber
-	}, function(result)
+	}, 
+	function(result)
 
 		if result[1] ~= nil then
 			foundNumber = true
@@ -284,12 +324,14 @@ AddEventHandler('esx_phone:removePlayerContact', function(phoneNumber, contactNa
 
 			xPlayer.set('contacts', contacts)
 
-			MySQL.Async.execute('DELETE FROM user_contacts WHERE identifier=@identifier AND name=@name AND number=@number',
+			MySQL.Async.execute(
+				'DELETE FROM user_contacts WHERE identifier=@identifier AND name=@name AND number=@number',
 			{
 				['@identifier'] = xPlayer.identifier,
 				['@name']       = contactName,
 				['@number']     = phoneNumber
-			}, function(rowsChanged)
+			}, 
+			function(rowsChanged)
 				TriggerClientEvent('esx:showNotification', _source, _U('contact_removed'))
 				TriggerClientEvent('esx_phone:removeContact', _source, contactName, phoneNumber)
 			end)
@@ -305,3 +347,58 @@ RegisterServerEvent('esx_phone:stopDispatch')
 AddEventHandler('esx_phone:stopDispatch', function(dispatchRequestId)
 	TriggerClientEvent('esx_phone:stopDispatch', -1, dispatchRequestId, GetPlayerName(source))
 end)
+
+
+--------- PHONE STATUS ---------
+
+ESX.RegisterServerCallback('esx_phone:getPhoneStatus', function(source, cb)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local hasPhone = false
+
+	if xPlayer ~= nil then
+		if xPlayer.getInventoryItem('blackberry').count >= 1 then
+			hasPhone = true
+		end
+	end
+
+	cb(hasPhone)
+end)
+
+
+--------- GET IDENTITY ---------
+
+ESX.RegisterServerCallback('esx_phone:getIdentity', function(source, cb)
+	local identity = getIdentity(source)
+
+	cb(identity)
+end)
+
+
+function sendNotification(xSource, message, messageType, messageTimeout)
+	TriggerClientEvent("pNotify:SendNotification", xSource, {
+		text = message,
+		type = messageType,
+		queue = "qalle",
+		timeout = messageTimeout,
+		layout = "bottomCenter"
+	})
+end
+
+
+function getIdentity(source)
+	local identifier = GetPlayerIdentifiers(source)[1]
+	local result = MySQL.Sync.fetchAll(
+		"SELECT * FROM users WHERE identifier = @identifier", {['@identifier'] = identifier
+	}
+)
+	if result[1] ~= nil then
+		local identity = result[1]
+		return {
+			job = identity['job'],
+			firstname = identity['firstname'],
+			lastname = identity['lastname']
+		}
+	else
+		return nil
+	end
+end

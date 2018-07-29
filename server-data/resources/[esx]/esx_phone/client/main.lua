@@ -149,21 +149,16 @@ RegisterNUICallback('remove_contact', function(data, cb)
 end)
 
 RegisterNetEvent('esx_phone:onMessage')
-AddEventHandler('esx_phone:onMessage', function(phoneNumber, message, position, anon, job, dispatchRequestId, dispatchNumber)
+AddEventHandler('esx_phone:onMessage', function(phoneNumber, message, position, anon, job, dispatchRequestId)
 
-	if dispatchNumber then
-		TriggerEvent('esx_phone:cancelMessage', dispatchNumber)
-
-		if WasEventCanceled() then
-			return
-		end
-	end
-
-	if job == 'player' then
-		ESX.ShowNotification(_U('new_message', message))
-	else
-		ESX.ShowNotification('~b~' .. job .. ': ~s~' .. message)
-	end
+	ESX.TriggerServerCallback('esx_phone:getPhoneStatus', function(hasPhone)
+		if hasPhone then
+			if job == 'player' then
+				ESX.ShowNotification(_U('new_message', message))
+				PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
+			else
+				ESX.ShowNotification('~b~' .. job .. ': ~s~' .. message)
+			end
 
 	SendNUIMessage({
 		newMessage  = true,
@@ -174,6 +169,7 @@ AddEventHandler('esx_phone:onMessage', function(phoneNumber, message, position, 
 		job         = job
 	})
 
+	print("dispatch: " .. tostring(dispatchRequestId))
 	if dispatchRequestId then
 		CurrentAction            = 'dispatch'
 		CurrentActionMsg         = _U('press_take_call', job)
@@ -192,13 +188,17 @@ AddEventHandler('esx_phone:onMessage', function(phoneNumber, message, position, 
 			CurrentAction = nil
 		end)
 	end
+end
+end)
 end)
 
 RegisterNetEvent('esx_phone:stopDispatch')
-AddEventHandler('esx_phone:stopDispatch', function(dispatchRequestId, playerName)
-	if CurrentDispatchRequestId == dispatchRequestId and CurrentAction == 'dispatch' then
+AddEventHandler('esx_phone:stopDispatch', function(dispatchRequestId, playerName, policeDispatch)
+	if CurrentDispatchRequestId == dispatchRequestId and CurrentAction == 'dispatch' and not policeDispatch then
 		CurrentAction = nil
 		ESX.ShowNotification(_U('taken_call', playerName))
+	elseif policeDispatch then
+		CurrentDispatchRequestId = 99999
 	end
 end)
 
@@ -210,6 +210,19 @@ AddEventHandler('esx_phone:setPhoneNumberSource', function(phoneNumber, source)
 		PhoneNumberSources[phoneNumber] = source
 	end
 end)
+
+------- CLIENT OPEN PHONE -------
+
+RegisterNetEvent('esx_phone:openPhone')
+AddEventHandler('esx_phone:openPhone', function()
+
+	if not GUI.PhoneIsShowed then
+		ESX.UI.Menu.CloseAll()
+		ESX.UI.Menu.Open('phone', GetCurrentResourceName(), 'main')
+	end
+
+end)
+
 
 RegisterNUICallback('setGPS', function(data)
 	SetNewWaypoint(data.x,  data.y)
@@ -230,7 +243,7 @@ RegisterNUICallback('send', function(data)
 		y = coords.y,
 		z = coords.z
 	})
-	
+
 	SendNUIMessage({
 		showMessageEditor = false
 	})
@@ -266,12 +279,16 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, 16,   true) -- Select Next Weapon
 			DisableControlAction(0, 17,   true) -- Select Prev Weapon
 		else
-			-- open phone
-			-- todo: is player busy (handcuffed, etc)
-			if IsControlJustReleased(0, Keys['F1']) and GetLastInputMethod(2) then
-				if not ESX.UI.Menu.IsOpen('phone', GetCurrentResourceName(), 'main') then
-					ESX.UI.Menu.CloseAll()
-					ESX.UI.Menu.Open('phone', GetCurrentResourceName(), 'main')
+			if IsControlJustReleased(0, Keys['F1']) then
+				if Config.BuyPhone then
+					if not ESX.UI.Menu.IsOpen('phone', GetCurrentResourceName(), 'main') then
+						TriggerServerEvent('esx_phone:tryOpenPhone')
+					end
+				else
+					if not ESX.UI.Menu.IsOpen('phone', GetCurrentResourceName(), 'main') then
+						ESX.UI.Menu.CloseAll()
+						ESX.UI.Menu.Open('phone', GetCurrentResourceName(), 'main')
+					end
 				end
 			end
 		end
@@ -289,13 +306,29 @@ Citizen.CreateThread(function()
 			AddTextComponentString(CurrentActionMsg)
 			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-			if IsControlJustReleased(0, Keys['E']) and GetLastInputMethod(2) then
+			if IsControlJustReleased(0, Keys['E']) then
 
 				if CurrentAction == 'dispatch' then
-					TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
-					SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
+						ESX.TriggerServerCallback('esx_phone:getIdentity', function(identity)
+							local playerData = ESX.GetPlayerData()
+							if playerData.job.name == 'police' or playerData.job.name == 'ambulance' then
+								TriggerServerEvent('esx_phone:send', playerData.job.name, identity.firstname .. ' bierze wezwanie.', false, {}, true)
+								TriggerServerEvent('esx_phone:send', CurrentActionData.phoneNumber, identity.firstname .. ' przyjedzie tak szybko jak to mozliwe, prosze czekac na miejscu.', false)
+								TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
+							elseif playerData.job.name == 'ambulance' then
+								TriggerServerEvent('esx_phone:send', playerData.job.name, 'D3v jest najlepszy! Chwala D3vowi!', false, {}, true)
+								TriggerServerEvent('esx_phone:send', CurrentActionData.phoneNumber, 'SOS Operator: Ambulans jest w drodze do okreslonej pozycji alarmowej. W przypadku powaznego zranienia sprawdz czy dana osoba ma puls i wolne drogi oddechowe. Jesli nie, zacznij masaz serca!', false)
+								TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId)
+							elseif playerData.job.name == 'police' and CurrentDispatchRequestId ~= 99999 then
+								TriggerServerEvent('esx_phone:send', playerData.job.name, 'Patrol odebral informacje ostatniego polaczenia. Oczekiwanie na informacje!', false, {}, true)
+								TriggerServerEvent('esx_phone:send', CurrentActionData.phoneNumber, 'SOS Operator: Policja jest w drodze do wskazanej pozycji alarmowej. Prosze czekac na patrol! W przypadku urazu prosze powiadomic karetke pogotowia i upewnic sie ze osoba ma puls i wolne drogi oddechowe.', false)
+								TriggerServerEvent('esx_phone:stopDispatch', CurrentDispatchRequestId, true)
+							end
+							SetNewWaypoint(CurrentActionData.position.x,  CurrentActionData.position.y)
+						end)
 				end
-				CurrentAction = nil
+	
+			CurrentAction = nil
 			end
 
 		end
