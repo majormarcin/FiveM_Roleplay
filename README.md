@@ -22,7 +22,7 @@ Pluginy ESX są często update'owane, wiec po pobraniu mojej paczki upewnij sie 
 4. Zedytuj server.cfg do twoich ustawien serwera (np. Nazwa / IP / Logo)
 5. Odpal Serwer!!
 
-Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz do mnie na [discord](https://discord.gg/TRWXRDw)
+Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz do mnie na [discord](https://discord.gg/ZAmue6f)
 
 ### Paczka nie posiada plików serwerowych gdyż te zależa od systemu operacyjnego twojej maszyny serwerowej
 
