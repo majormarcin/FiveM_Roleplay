@@ -50,11 +50,11 @@ Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz do mnie na [disco
 4. Dodatkowe skrypty RolePlay
 Licencje i informacje o prawach autorskich:
     - [Loadscreen by Syntasu](https://github.com/Syntasu/synn-loadscreen)
-   - [FRFuel by thers](https://github.com/thers/FRFuel) zamienia esx_petrol z powodów licencyjnych
+   - [FRFuel by thers](https://github.com/thers/FRFuel)     (zamienia esx_petrol z powodów licencyjnych)
    - [pNotify by Nick78111](https://github.com/Nick78111/pNotify)
    - [ELS-FiveM by MrDaGree](https://github.com/MrDaGree/ELS-FiveM)
    - [lux_vehcontrol by Lt.Caine](https://forum.fivem.net/t/release-luxart-vehicle-control/17304)
-   - [esx_aiomenu by ArkSeyonet](https://github.com/ArkSeyonet/esx_aiomenu) :exclamation: OSTRZEŻENIE :exclamation: Ten plugin nie jest już update'owany i może być tylko edytowany przez ESX team.
+   - [esx_aiomenu by ArkSeyonet](https://github.com/ArkSeyonet/esx_aiomenu)     (:exclamation: OSTRZEŻENIE :exclamation: Ten plugin nie jest już update'owany i może być tylko edytowany przez ESX team.)
    - [streetLabel by lowheartrate](https://github.com/lowheartrate/streetLabel)
    - [handsup by KadDarem](https://github.com/KadDarem/Walkable-Hands-Up)
    - [esx_eden_garage by snyx95](https://github.com/snyx95/esx_eden_garage)
