@@ -38,27 +38,27 @@ Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz do mnie na [disco
 1. Jeden plik SQL ktory zbuduje cała baze danych. Zaoszczędzi ci to bardzo dużo czasu żeby nie dodawać każdego pluginu pojedynczo do bazy danych. Język jest ustawiony na domyślny (plugina - Francuzki) więc jeżeli potrzebujesz zmiany języka polecam użyć mojego [installer'a bazy danych](https://zelkowski.pl/fivem/)
 
 2. Przydatne narzędzia administracyjne
-- [IceCon](https://github.com/icedream/icecon/releases)
-- IceCon jest skryptem do Windows'a które umożliwia podłączenie sie do serwer'a przez RCon i moderacje serwera z konsoli.
+  - [IceCon](https://github.com/icedream/icecon/releases)
+  - IceCon jest skryptem do Windows'a które umożliwia podłączenie sie do serwer'a przez RCon i moderacje serwera z konsoli.
 
 3. Podstawowe skrypty aby móc używac Frame-Work'u ESX i Bazy Danych
-- [mysql-async](https://github.com/brouznouf/fivem-mysql-async/releases/latest)
-- [EssentialMode](https://essentialmode.com/) (es_admin2 included, a basic admin tool)
-- [esplugin_mysql](https://forum.fivem.net/t/release-essentialmode-base/3665/1181)
-- [async](https://github.com/ESX-Org/async/releases/latest)
+  - [mysql-async](https://github.com/brouznouf/fivem-mysql-async/releases/latest)
+  - [EssentialMode](https://essentialmode.com/) (es_admin2 included, a basic admin tool)
+  - [esplugin_mysql](https://forum.fivem.net/t/release-essentialmode-base/3665/1181)
+  - [async](https://github.com/ESX-Org/async/releases/latest)
 
 4. Dodatkowe skrypty RolePlay
 Licencje i informacje o prawach autorskich:
-- [Loadscreen by Syntasu](https://github.com/Syntasu/synn-loadscreen)
-- [FRFuel by thers](https://github.com/thers/FRFuel) zamienia esx_petrol z powodów licencyjnych
-- [pNotify by Nick78111](https://github.com/Nick78111/pNotify)
-- [ELS-FiveM by MrDaGree](https://github.com/MrDaGree/ELS-FiveM)
-- [lux_vehcontrol by Lt.Caine](https://forum.fivem.net/t/release-luxart-vehicle-control/17304)
-- [esx_aiomenu by ArkSeyonet](https://github.com/ArkSeyonet/esx_aiomenu) :exclamation: OSTRZEŻENIE :exclamation: Ten plugin nie jest już update'owany i może być tylko edytowany przez ESX team.
-- [streetLabel by lowheartrate](https://github.com/lowheartrate/streetLabel)
-- [handsup by KadDarem](https://github.com/KadDarem/Walkable-Hands-Up)
-- [esx_eden_garage by snyx95](https://github.com/snyx95/esx_eden_garage)
-- [LockSystem 3.0 by Deediezi](https://github.com/Deediezi/FiveM_LockSystem)
+  - [Loadscreen by Syntasu](https://github.com/Syntasu/synn-loadscreen)
+  - [FRFuel by thers](https://github.com/thers/FRFuel) zamienia esx_petrol z powodów licencyjnych
+  - [pNotify by Nick78111](https://github.com/Nick78111/pNotify)
+  - [ELS-FiveM by MrDaGree](https://github.com/MrDaGree/ELS-FiveM)
+  - [lux_vehcontrol by Lt.Caine](https://forum.fivem.net/t/release-luxart-vehicle-control/17304)
+  - [esx_aiomenu by ArkSeyonet](https://github.com/ArkSeyonet/esx_aiomenu) :exclamation: OSTRZEŻENIE :exclamation: Ten plugin nie jest już update'owany i może być tylko edytowany przez ESX team.
+  - [streetLabel by lowheartrate](https://github.com/lowheartrate/streetLabel)
+  - [handsup by KadDarem](https://github.com/KadDarem/Walkable-Hands-Up)
+  - [esx_eden_garage by snyx95](https://github.com/snyx95/esx_eden_garage)
+  - [LockSystem 3.0 by Deediezi](https://github.com/Deediezi/FiveM_LockSystem)
 
 
 ### [ESX](https://github.com/ESX-Org): 
