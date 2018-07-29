@@ -16,7 +16,7 @@ Pluginy ESX są często update'owane, wiec po pobraniu mojej paczki upewnij sie 
 
 # JAK ZAINSTALOWAĆ
 
-1. Pobierz pliki serwerowe z [tąd](https://docs.fivem.net/server/)
+1. Pobierz pliki serwerowe [stąd](https://docs.fivem.net/server/)
 2. Wklej pliki z server-data (nie musisz pobierac "cfx-server-data" jest to już dodane do paczki)
 3. Zimportuj database.sql do swojej bazy danych
 4. Zedytuj server.cfg do twoich ustawien serwera (np. Nazwa / IP / Logo)
