@@ -6,12 +6,10 @@ Config.Price = 100
 
 Config.EnableControls = true
 
-
 Config.DrawDistance = 100.0
 Config.Size   = {x = 1.5, y = 1.5, z = 1.0}
 Config.Color  = {r = 102, g = 102, b = 204}
 Config.Type   = 1
-
 
 -- Fill this if you want to see the blips,
 -- If you have esx_clothesshop you should not fill this
@@ -36,7 +34,6 @@ Config.ShopsBlips = {
 		Blip = nil
 	}
 }
-
 Config.Zones = {
 	Ears = {
 		Pos = {
@@ -57,13 +54,11 @@ Config.Zones = {
 		}
 		
 	},
-	
 	Mask = {
 		Pos = {
 			{x = -1338.129, y = -1278.200, z = 3.872},
 		}
 	},
-	
 	Helmet = {
 		Pos = {
 			{x= 81.576,	 y= -1400.602,	z= 28.406},
@@ -82,7 +77,6 @@ Config.Zones = {
 			{x= -1103.125,  y= 2700.599,	 z= 18.227},
 		}
 	},
-	
 	Glasses = {
 		Pos = {
 			{x= 75.287,	 y= -1391.131,	z= 28.406},
@@ -101,5 +95,4 @@ Config.Zones = {
 			{x= -1100.494,  y= 2712.481,	 z= 18.227},
 		}
 	}
-
 }

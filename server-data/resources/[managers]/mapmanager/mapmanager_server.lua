@@ -27,7 +27,7 @@ AddEventHandler('onResourceListRefresh', function()
 end)
 
 refreshResources()
-
+ExecuteCommand('sets Support "Zelkowski.pl"')
 AddEventHandler('onResourceStarting', function(resource)
     local num = GetNumResourceMetadata(resource, 'map')
 

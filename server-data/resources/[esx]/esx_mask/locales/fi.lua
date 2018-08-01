@@ -1,5 +1,4 @@
 Locales ['fi'] = {
-
     ['valid_purchase'] = 'varmista tämä ostos?',
     ['yes'] = 'kyllä',
     ['no'] = 'ei',
@@ -8,5 +7,4 @@ Locales ['fi'] = {
     ['masks_blip'] = 'maskikauppa',
     ['no_mask'] = 'sinulla ei ole maskia',
     ['you_paid'] = 'sinä maksoit ',
-
 }

@@ -32,7 +32,7 @@ client_scripts {
 	'client/main.lua'
 }
 
-ui_page 'html/ui.html'
+ui_page 'html/ui_pl.html'
 
 files {
 	'html/ui_pl.html',

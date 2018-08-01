@@ -1,5 +1,4 @@
 Locales ['sv'] = {
-
     ['valid_purchase'] = 'Bekräfta det här köpet?',
     ['yes'] = 'ja',
     ['no'] = 'nej',
@@ -8,5 +7,4 @@ Locales ['sv'] = {
     ['masks_blip'] = 'masker',
     ['no_mask'] = 'du har ingen mask',
     ['you_paid'] = 'du betalade ',
-
 }

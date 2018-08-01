@@ -1,5 +1,4 @@
 Locales ['en'] = {
-
 	['valid_purchase'] = 'validate this purchase?',
 	['yes'] = 'yes',
 	['no'] = 'no',
@@ -17,5 +16,4 @@ Locales ['en'] = {
 	['no_helmet'] = 'you do not have a helmet',
 	['no_mask'] = 'you do not have a mask',
 	['you_paid'] = 'you paid ',
-
 }
