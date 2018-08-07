@@ -1,6 +1,6 @@
 Config              = {}
 Config.DrawDistance = 100.0
-Config.Locale       = 'fr'
+Config.Locale       = 'pl'
 Config.Jobs         = {}
 
 Config.PublicZones = {
