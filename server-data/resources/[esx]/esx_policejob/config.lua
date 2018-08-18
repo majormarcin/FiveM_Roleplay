@@ -54,7 +54,7 @@ Config.PoliceStations = {
 		},
 		Vehicles = {
 			{
-				Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },{
+				Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },
 				SpawnPoint = { x = 438.42, y = -1018.3, z = 27.757 },
 				Heading    = 90.0,
 			}
