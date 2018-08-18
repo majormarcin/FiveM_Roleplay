@@ -1,0 +1,15 @@
+Locales['pl'] = {
+	['press_e'] = 'Wciśnij ~INPUT_CONTEXT~ aby sprawdzić przyczynę ~r~zgonu~s~',
+	['hardmeele'] = 'Prawdopodobnie trafiony przez coś twardego w głowie',
+	['bullet'] = 'Prawdopodobnie zastrzelony przez kulę, dziury po pociskach w ciele',
+	['knifes'] = 'Prawdopodobnie zaatakowany czymś ostrym',
+	['bitten'] = 'Prawdopodobnie ugryziony przez zwierzę',
+	['brokenlegs'] = 'Prawdopodobnie upadek, złamana noga',
+	['explosive'] = 'Prawdopodobnie umarł przez coś, co eksploduje',
+	['gas'] = 'Prawdopodobnie ofiara uduszenia',
+	['fireextinguisher'] = 'Prawdopodobnie zginęło od gazu z gaśnicy',
+	['fire'] = 'Prawdopodobnie został podpalony',
+	['caraccident'] = 'Prawdopodobnie zginął w wypadku samochodowym',
+	['drown'] = 'Prawdopodobnie utonął',
+	['unknown'] = 'Przyczyna śmierci nieznana',
+}

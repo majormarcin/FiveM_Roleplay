@@ -9,9 +9,7 @@ local Keys = {
 	["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
-
 local voice = {default = 5.0, shout = 12.0, whisper = 1.0, current = 0, level = nil}
-
 function drawLevel(r, g, b, a)
 	SetTextFont(4)
 	SetTextProportional(1)
@@ -21,12 +19,10 @@ function drawLevel(r, g, b, a)
 	SetTextEdge(1, 0, 0, 0, 255)
 	SetTextDropShadow()
 	SetTextOutline()
-
 	BeginTextCommandDisplayText("STRING")
 	AddTextComponentSubstringPlayerName(_U('voice', voice.level))
 	EndTextCommandDisplayText(0.175, 0.92)
 end
-
 AddEventHandler('onClientMapStart', function()
 	if voice.current == 0 then
 		NetworkSetTalkerProximity(voice.default)
@@ -36,11 +32,9 @@ AddEventHandler('onClientMapStart', function()
 		NetworkSetTalkerProximity(voice.whisper)
 	end
 end)
-
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
-
 		if IsControlJustPressed(1, Keys['H']) and IsControlPressed(1, Keys['LEFTSHIFT']) then
 			voice.current = (voice.current + 1) % 3
 			if voice.current == 0 then
@@ -54,7 +48,6 @@ Citizen.CreateThread(function()
 				voice.level = _U('whisper')
 			end
 		end
-
 		if voice.current == 0 then
 			voice.level = _U('normal')
 		elseif voice.current == 1 then
@@ -62,7 +55,6 @@ Citizen.CreateThread(function()
 		elseif voice.current == 2 then
 			voice.level = _U('whisper')
 		end
-
 		if NetworkIsPlayerTalking(PlayerId()) then
 			drawLevel(41, 128, 185, 255)
 		elseif not NetworkIsPlayerTalking(PlayerId()) then

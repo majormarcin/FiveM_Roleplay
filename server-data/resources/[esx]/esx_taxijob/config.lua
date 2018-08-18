@@ -1,35 +1,29 @@
 Config                            = {}
 Config.DrawDistance               = 100.0
-Config.NPCJobEarnings             = {min = 15, max = 40}
+Config.NPCJobEarnings             = {min = 15, max = 400}
 Config.MaxInService               = -1
 Config.EnablePlayerManagement     = false
 Config.EnableSocietyOwnedVehicles = false
 Config.Locale                     = 'pl'
-
 Config.Zones = {
-
 	TaxiActions = {
 		Pos     = {x = 915.039, y = -162.187, z = 73.684},
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
-		Color   = {r = 204, g = 204, b = 0},
+		Color   = {r = 255, g = 255, b = 0},
 		Type    = 1
 	},
-
 	VehicleSpawnPoint = {
 		Pos  = {x = 911.108, y = -177.867, z = 74.283},
 		Size = {x = 1.5, y = 1.5, z = 1.0},
-		Type = -1
+		Type = -36
 	},
-
 	VehicleDeleter = {
 		Pos   = {x = 908.317, y = -183.070, z = 73.201},
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
-		Color = {r = 204, g = 204, b = 0},
-		Type  = 1
+		Color = {r = 255, g = 255, b = 0},
+		Type  = 24
 	}
-
 }
-
 Config.JobLocations = {
 	{x = 293.476,  y = -590.163, z = 42.7371},
 	{x = 253.404,  y = -375.86, z = 44.0819},

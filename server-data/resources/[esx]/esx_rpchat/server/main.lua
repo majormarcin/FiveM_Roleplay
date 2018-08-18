@@ -1,7 +1,11 @@
 AddEventHandler('chatMessage', function(source, name, msg)
 	local command = stringsplit(msg, " ")[1];
 
-	if command == "/ooc" then
+	if command == "/dw" then
+		CancelEvent()
+		if Config.EnableESXIdentity then name = GetCharacterName(source) end
+		TriggerClientEvent('chatMessage', -1, _U('dw_prefix'), { 0, 0, 0 }, string.sub(msg, 5))
+	elseif command == "/ooc" then
 		CancelEvent()
 		if Config.EnableESXIdentity then name = GetCharacterName(source) end
 		TriggerClientEvent('chatMessage', -1, _U('ooc_prefix', name), { 128, 128, 128 }, string.sub(msg, 5))
@@ -13,6 +17,10 @@ AddEventHandler('chatMessage', function(source, name, msg)
 		CancelEvent()
 		if Config.EnableESXIdentity then name = GetCharacterName(source) end
 		TriggerClientEvent('esx_rpchat:sendProximityMessage', -1, source, _U('me_prefix', name), string.sub(msg, 4), { 255, 0, 0 })
+	elseif command == "/do" then
+		CancelEvent()
+		if Config.EnableESXIdentity then name = GetCharacterName(source) end
+		TriggerClientEvent('esx_rpchat:sendProximityMessage', -1, source, _U('do_prefix', name), string.sub(msg, 4), { 255, 110, 0 })
 	elseif command == "/news" then
 		CancelEvent()
 		if Config.EnableESXIdentity then name = GetCharacterName(source) end

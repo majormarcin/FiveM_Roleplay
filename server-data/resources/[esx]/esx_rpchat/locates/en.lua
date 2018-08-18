@@ -1,13 +1,17 @@
 Locales['en'] = {
 	['ooc_help'] = 'type an out of character message',
+	['dw_prefix'] = '^0[DeepWeb^0] ',
+	['dw_help'] = 'send a tweet',
 	['ooc_prefix'] = 'OOC | %s',
 	['twt_help'] = 'send a tweet',
 	['twt_prefix'] = '^0[^4Twitter^0] (^5@%s^0)',
 	['me_help'] = 'personal action',
-	['me_prefix'] = 'me | %s',
+	['me_prefix'] = '%s ',
+	['do_prefix'] = '* %s ',
 	['news_help'] = 'announce news (do not abuse)',
 	['news_prefix'] = 'news | %s',
 	['ooc_argument_name'] = 'message',
+	['dw_argument_name'] = 'message',
 	['ooc_argument_help'] = 'the message',
 	['ooc_unknown_command'] = '^1%s^0 is not a valid command!',
 }
