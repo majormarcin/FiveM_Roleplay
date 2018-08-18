@@ -29,6 +29,15 @@ end
 
 Citizen.CreateThread(function()
 	while true do
+		Citizen.Wait(1)
+		id = PlayerId()
+		DisablePlayerVehicleRewards(id)
+		--ClearAreaOfCops()
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
 		-- Wait 5 seconds after player has loaded in and trigger the event.
 		Citizen.Wait( 5000 )
 

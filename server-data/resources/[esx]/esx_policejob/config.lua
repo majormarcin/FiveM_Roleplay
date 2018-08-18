@@ -1,4 +1,4 @@
-taConfig                            = {}
+Config                            = {}
 
 Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
@@ -49,19 +49,16 @@ Config.PoliceStations = {
 		Cloakrooms = {
 			{ x = 452.600, y = -993.306, z = 29.750 },
 		},
-
 		Armories = {
 			{ x = 451.699, y = -980.356, z = 29.689 },
 		},
-
 		Vehicles = {
-				Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },
-454.69, y = -1017.4, z = 27.430			{
+			{
+				Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },{
 				SpawnPoint = { x = 438.42, y = -1018.3, z = 27.757 },
 				Heading    = 90.0,
 			}
 		},
-
 		Helicopters = {
 			{
 				Spawner    = { x = 466.477, y = -982.819, z = 42.691 },
@@ -78,9 +75,7 @@ Config.PoliceStations = {
 		BossActions = {
 			{ x = 448.417, y = -973.208, z = 29.689 }
 		},
-
 	},
-
 }
 
 -- https://wiki.rage.mp/index.php?title=Vehicles
