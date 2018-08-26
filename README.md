@@ -6,6 +6,8 @@ ORGINAŁ:
 LINK DO ESX-ORG:
 [ESX-ORG](https://github.com/ESX-Org)
 
+Hosting wspierający FiveM: [zap-hosting](https://zap-hosting.com/majormarcin)
+
 
 # INFORMACJE
 
