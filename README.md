@@ -1,12 +1,11 @@
 # FiveM_ESX_RolePlay_PL
 
-ORGINAŁ:
-[Fivem_RP_ESX](https://github.com/majormarcin/Fivem_RP_ESX)
-
 LINK DO ESX-ORG:
 [ESX-ORG](https://github.com/ESX-Org)
 
-Hosting wspierający FiveM: [zap-hosting](https://zap-hosting.com/majormarcin)
+WSPARCIE:
+
+Rejestrując się z tego linku: [zap-hosting](https://zap-hosting.com/majormarcin) wspierasz rozwój tego projektu dodatkowo możesz skoczystać z 10% zniżki na cały czas trwania wszystkich produktów używając kodu ```MajorMarcin-a-3977```
 
 
 # INFORMACJE
