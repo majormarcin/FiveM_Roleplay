@@ -5,7 +5,7 @@ LINK DO ESX-ORG:
 
 WSPARCIE:
 
-Rejestrując się z tego linku: [zap-hosting](https://zap-hosting.com/majormarcin) wspierasz rozwój tego projektu dodatkowo możesz skoczystać z 10% zniżki na cały czas trwania wszystkich produktów używając kodu ```MajorMarcin-a-3977```
+Rejestrując się z tego linku: [zap-hosting](https://zap-hosting.com/majormarcin) wspierasz rozwój tego projektu dodatkowo możesz skorzystać z 10% zniżki na cały czas trwania wszystkich produktów używając kodu ```MajorMarcin-a-3977```
 
 
 # INFORMACJE
