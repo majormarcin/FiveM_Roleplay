@@ -115,9 +115,9 @@ Citizen.CreateThread(function ()
 
       local playerPed  = GetPlayerPed(-1)
       if IsPedInAnyVehicle(playerPed) then
-        DisplayHelpText("Press ~INPUT_CONTEXT~ to ~g~STORE~w~ this Car")
+        DisplayHelpText("Wciśnij ~INPUT_CONTEXT~ aby ~g~Zaparkować~w~ Auto")
       else
-        DisplayHelpText("Press ~INPUT_CONTEXT~ to ~b~OPEN~w~ your Garage")
+        DisplayHelpText("Wciśnij ~INPUT_CONTEXT~ aby ~b~Otworzyć~w~ Garaż")
       end
 
       if IsControlPressed(0, Keys['E']) and (GetGameTimer() - GUI.Time) > 300 then

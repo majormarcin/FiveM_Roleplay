@@ -195,7 +195,7 @@ end)
 
   adds all user owned cars into the parking garage table so people can pull their cars out
 
-]]
+
 function parkAllOwnedVehicles()
 
   MySQL.ready(function ()
@@ -234,5 +234,51 @@ function parkAllOwnedVehicles()
 
 
 end
+]]
 
-parkAllOwnedVehicles()
+RegisterServerEvent('netr_garages:updateInventory')
+AddEventHandler('netr_garages:updateInventory', function()
+	parkAllOwnedVehicles()
+end)
+
+function parkAllOwnedVehicles()
+	Citizen.CreateThread(function()
+		MySQL.Async.execute('TRUNCATE user_parkings')
+
+		MySQL.Async.fetchAll('SELECT * FROM owned_vehicles', {}, function(result)
+			for i=1, #result, 1 do
+				MySQL.Async.execute('INSERT INTO `user_parkings` (`identifier`, `plate`, `vehicle`) VALUES (@identifier, @plate, @vehicle)', {
+					['@identifier'] = result[i].owner,
+					['@plate']      = result[i].plate,
+					['@vehicle']    = result[i].vehicle
+				})
+			end
+		end)
+
+		print('netr_garages: loaded garage hive!')
+	end)
+end
+
+
+AddEventHandler('onMySQLReady', function()
+	hasSqlRun = true
+	Citizen.CreateThread(function()
+		parkAllOwnedVehicles()
+	end)
+end)
+
+-- extremely useful when restarting script mid-game
+Citizen.CreateThread(function()
+	Citizen.Wait(10000) -- hopefully enough for connection to the SQL server
+
+	if not hasSqlRun then
+		parkAllOwnedVehicles()
+		hasSqlRun = true
+	end
+end)
+
+TriggerEvent('es:addGroupCommand', 'garload', 'admin', function (source, args, user)
+	parkAllOwnedVehicles()
+end, function (source, args, user)
+	TriggerClientEvent('chatMessage', source, 'SYSTEM', { 255, 0, 0 }, 'Insufficienct permissions!')
+end, { help = 'Reload the garage database' })
