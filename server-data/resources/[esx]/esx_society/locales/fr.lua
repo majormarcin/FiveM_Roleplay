@@ -1,5 +1,6 @@
 Locales['fr'] = {
   ['actions']                = 'actions',
+  ['boss_menu']              = 'patron',
   ['deposit_amount']         = 'montant du dépôt',
   ['deposit_society_money']  = 'déposer argent société',
   ['do_you_want_to_recruit'] = 'Voulez-vous recruter %s?',
@@ -11,7 +12,7 @@ Locales['fr'] = {
   ['have_deposited']         = 'vous avez déposé ~r~$%s~s~',
   ['have_withdrawn']         = 'vous avez retiré ~g~$%s~s~',
   ['invalid_amount']         = 'montant invalide',
-  ['invalid_amount']         = 'montant invalide',
+  ['invalid_amount_max']     = 'that salary is not allowed',
   ['no']                     = 'non',
   ['promote']                = 'promouvoir',
   ['promote_employee']       = 'promouvoir %s',

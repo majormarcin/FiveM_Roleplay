@@ -8,7 +8,7 @@ Config.MarkerColor                = { r = 50, g = 50, b = 204 }
 Config.EnablePlayerManagement     = true
 Config.EnableArmoryManagement     = true
 Config.EnableESXIdentity          = true -- enable if you're using esx_identity
-Config.EnableFreemodePeds         = true  -- turn this on if you want custom peds
+Config.EnableNonFreemodePeds      = true -- turn this on if you want custom peds
 Config.EnableSocietyOwnedVehicles = false
 Config.EnableLicenses             = true -- enable if you're using esx_license
 
@@ -21,9 +21,7 @@ Config.MaxInService               = -1
 Config.Locale                     = 'pl'
 
 Config.PoliceStations = {
-
 	LSPD = {
-
 		Blip = {
 			Pos     = { x = 425.130, y = -979.558, z = 30.711 },
 			Sprite  = 60,
@@ -45,7 +43,6 @@ Config.PoliceStations = {
 			{ name = 'WEAPON_STICKYBOMB',       price = 250 },
 			{ name = 'GADGET_PARACHUTE',        price = 300 },
 		},
-
 		Cloakrooms = {
 			{ x = 452.600, y = -993.306, z = 29.750 },
 		},
@@ -56,28 +53,31 @@ Config.PoliceStations = {
 			{
 				Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },
 				SpawnPoint = { x = 438.42, y = -1018.3, z = 27.757 },
-				Heading    = 90.0,
+				Heading    = 90.0
+			},
+			{
+				Spawner    = { x = 473.38, y = -1018.43, z = 27.00 },
+				SpawnPoint = { x = 475.98, y = -1021.65, z = 28.06 },
+				Heading    = 276.11
 			}
 		},
 		Helicopters = {
 			{
 				Spawner    = { x = 466.477, y = -982.819, z = 42.691 },
 				SpawnPoint = { x = 450.04, y = -981.14, z = 42.691 },
-				Heading    = 0.0,
+				Heading    = 0.0
 			}
 		},
-
 		VehicleDeleters = {
 			{ x = 462.74, y = -1014.4, z = 27.065 },
 			{ x = 462.40, y = -1019.7, z = 27.104 },
+			{ x = 469.12, y = -1024.52, z = 27.20 }
 		},
-
 		BossActions = {
 			{ x = 448.417, y = -973.208, z = 29.689 }
 		},
 	},
 }
-
 -- https://wiki.rage.mp/index.php?title=Vehicles
 Config.AuthorizedVehicles = {
 	Shared = {
@@ -90,18 +90,15 @@ Config.AuthorizedVehicles = {
 			label = 'Police Prison Bus'
 		}
 	},
-
 	recruit = {
 
 	},
-
 	officer = {
 		{
 			model = 'police3',
 			label = 'Police Interceptor'
 		}
 	},
-
 	sergeant = {
 		{
 			model = 'policet',
@@ -112,11 +109,9 @@ Config.AuthorizedVehicles = {
 			label = 'Police Bike'
 		}
 	},
-
 	intendent = {
 
 	},
-
 	lieutenant = {
 		{
 			model = 'riot',
@@ -127,19 +122,14 @@ Config.AuthorizedVehicles = {
 			label = 'FIB SUV'
 		}
 	},
-
 	chef = {
 
 	},
-
 	boss = {
 
 	}
 }
-
-
 -- CHECK SKINCHANGER CLIENT MAIN.LUA for matching elements
-
 Config.Uniforms = {
 	recruit_wear = {
 		male = {
@@ -325,5 +315,4 @@ Config.Uniforms = {
 			['tshirt_1'] = 36,  ['tshirt_2'] = 1
 		}
 	}
-
 }
