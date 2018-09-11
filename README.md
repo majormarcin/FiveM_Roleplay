@@ -103,7 +103,3 @@ Licencje i informacje o prawach autorskich:
 [esx_drugs](https://github.com/ESX-Org/esx_drugs)
 [esx_animations](https://github.com/ESX-Org/esx_animations)
 [esx_voice](https://github.com/ESX-Org/esx_voice)
-
-
-
-## Jeśli chcesz dołączyć zajrzyj na discorda lub poprostu zaproponuj zmiany w repozytorium jeśli potrzebujesz pomocy technicznej lub jakichś zmian w plikach daj znać.

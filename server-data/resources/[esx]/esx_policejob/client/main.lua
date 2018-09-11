@@ -37,7 +37,10 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	Citizen.Wait(5000)
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
 	PlayerData = ESX.GetPlayerData()
 end)
 
@@ -121,7 +124,7 @@ function OpenCloakroomMenu()
 		table.insert(elements, {label = _U('police_wear'), value = 'boss_wear'})
 	end
 
-	if Config.EnableFreemodePeds then
+	if Config.EnableNonFreemodePeds then
 		table.insert(elements, {label = 'Sheriff wear', value = 'freemode_ped', maleModel = 's_m_y_sheriff_01', femaleModel = 's_f_y_sheriff_01'})
 		table.insert(elements, {label = 'Police wear', value = 'freemode_ped', maleModel = 's_m_y_cop_01', femaleModel = 's_f_y_cop_01'})
 		table.insert(elements, {label = 'Swat wear', value = 'freemode_ped', maleModel = 's_m_y_swat_01', femaleModel = 's_m_y_swat_01'})
@@ -140,7 +143,7 @@ function OpenCloakroomMenu()
 
 		if data.current.value == 'citizen_wear' then
 			
-			if Config.EnableFreemodePeds then
+			if Config.EnableNonFreemodePeds then
 				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 					local isMale = skin.sex == 0
 
@@ -151,9 +154,11 @@ function OpenCloakroomMenu()
 					end)
 
 				end)
+			else
+				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+					TriggerEvent('skinchanger:loadSkin', skin)
+				end)
 			end
-
-
 
 			if Config.MaxInService ~= -1 then
 
@@ -631,7 +636,7 @@ function OpenPoliceActionsMenu()
 				align    = 'top-left',
 				elements = {
 					{label = _U('cone'),		value = 'prop_roadcone02a'},
-					{label = _U('barrier'),		value = 'prop_barrier_work06a'},
+					{label = _U('barrier'),		value = 'prop_barrier_work05'},
 					{label = _U('spikestrips'),	value = 'p_ld_stinger_s'},
 					{label = _U('box'),			value = 'prop_boxpile_07d'},
 					{label = _U('cash'),		value = 'hei_prop_cash_crate_half_full'}
@@ -1808,7 +1813,7 @@ Citizen.CreateThread(function()
 
   local trackedEntities = {
     'prop_roadcone02a',
-    'prop_barrier_work06a',
+    'prop_barrier_work05',
     'p_ld_stinger_s',
     'prop_boxpile_07d',
     'hei_prop_cash_crate_half_full'
