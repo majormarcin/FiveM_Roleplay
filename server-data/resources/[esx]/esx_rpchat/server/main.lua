@@ -3,12 +3,13 @@ AddEventHandler('chatMessage', function(source, name, msg)
 
 	if command == "/dw" then
 		CancelEvent()
-		if Config.EnableESXIdentity then name = GetCharacterName(source) end
+		if Config.EnableESXIdentity then name = GetPlayerName(source) end
+		print("[DW] "..GetPlayerName(source).." "..string.sub(msg, 5))
 		TriggerClientEvent('chatMessage', -1, _U('dw_prefix'), { 0, 0, 0 }, string.sub(msg, 5))
 	elseif command == "/ooc" then
 		CancelEvent()
-		if Config.EnableESXIdentity then name = GetCharacterName(source) end
-		TriggerClientEvent('chatMessage', -1, _U('ooc_prefix', name), { 128, 128, 128 }, string.sub(msg, 5))
+		if Config.EnableESXIdentity then name = GetPlayerName(source) end
+		TriggerClientEvent('esx_rpchat:sendProximityMessage', -1, source, _U('ooc_prefix', name), string.sub(msg, 5),{ 128, 128, 128 })
 	elseif command == "/twt" then
 		CancelEvent()
 		if Config.EnableESXIdentity then name = GetCharacterName(source) end

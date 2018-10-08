@@ -1,8 +1,8 @@
 Locales['pl'] = {
 	['ooc_help'] = 'wpisz wiadomość poza postacią',
-	['ooc_prefix'] = 'oOC | %s',
+	['ooc_prefix'] = 'local OOC | %s',
 	['twt_help'] = 'wyślij Tweeta',
-	['twt_prefix'] = '^0[^4Twitter^0] (^5@%s^0)',
+	['twt_prefix'] = '^5@%s^0',
 	['me_help'] = 'akcja osobista',
 	['me_prefix'] = '%s',
 	['me_sufix'] = '^1',

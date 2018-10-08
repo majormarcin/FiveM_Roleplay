@@ -33,14 +33,14 @@ end)
 AddEventHandler('__cfx_internal:serverPrint', function(msg)
   print(msg)
 
-  SendNUIMessage({
+  --[[SendNUIMessage({
     type = 'ON_MESSAGE',
     message = {
       templateId = 'print',
       multiline = true,
       args = { msg }
     }
-  })
+  })]]
 end)
 
 AddEventHandler('chat:addMessage', function(message)

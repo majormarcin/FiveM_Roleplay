@@ -15,7 +15,7 @@ AddEventHandler('_chat:messageEntered', function(author, color, message)
     TriggerEvent('chatMessage', source, author, message)
 
     if not WasEventCanceled() then
-        TriggerClientEvent('chatMessage', -1, author,  { 255, 255, 255 }, message)
+        TriggerClientEvent('chatMessage', -1, "OOC | "..author,  { 128, 128, 128 }, message)
     end
 
     print(author .. ': ' .. message)
@@ -34,6 +34,7 @@ AddEventHandler('__cfx_internal:commandFallback', function(command)
 end)
 
 -- player join messages
+--[[
 AddEventHandler('chat:init', function()
     TriggerClientEvent('chatMessage', -1, '', { 255, 255, 255 }, '^2* ' .. GetPlayerName(source) .. ' joined.')
 end)
@@ -41,9 +42,9 @@ end)
 AddEventHandler('playerDropped', function(reason)
     TriggerClientEvent('chatMessage', -1, '', { 255, 255, 255 }, '^2* ' .. GetPlayerName(source) ..' left (' .. reason .. ')')
 end)
-
+]]
 RegisterCommand('say', function(source, args, rawCommand)
-    TriggerClientEvent('chatMessage', -1, (source == 0) and 'console' or GetPlayerName(source), { 255, 255, 255 }, rawCommand:sub(5))
+    TriggerClientEvent('chatMessage', -1, (source == 0) and 'SERVER' or GetPlayerName(source), { 255, 0, 0 }, "^*^8"..rawCommand:sub(5))
 end)
 
 -- command suggestions for clients
