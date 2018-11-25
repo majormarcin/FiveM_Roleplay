@@ -42,7 +42,7 @@ Citizen.CreateThread(function()
 
     local blip = AddBlipForCoord(v.Marker.x, v.Marker.y, v.Marker.z)
 
-    SetBlipSprite (blip, 357)
+    SetBlipSprite (blip, 50)
     SetBlipDisplay(blip, 4)
     SetBlipScale  (blip, 0.9)
     SetBlipColour (blip, 3)
@@ -115,9 +115,9 @@ Citizen.CreateThread(function ()
 
       local playerPed  = GetPlayerPed(-1)
       if IsPedInAnyVehicle(playerPed) then
-        DisplayHelpText("Wciśnij ~INPUT_CONTEXT~ aby ~g~Zaparkować~w~ Auto")
+        DisplayHelpText("Press ~INPUT_CONTEXT~ to ~g~STORE~w~ this Car")
       else
-        DisplayHelpText("Wciśnij ~INPUT_CONTEXT~ aby ~b~Otworzyć~w~ Garaż")
+        DisplayHelpText("Press ~INPUT_CONTEXT~ to ~b~OPEN~w~ your Garage")
       end
 
       if IsControlPressed(0, Keys['E']) and (GetGameTimer() - GUI.Time) > 300 then
@@ -134,10 +134,12 @@ Citizen.CreateThread(function ()
                 local vehicleProps  = ESX.Game.GetVehicleProperties(vehicle)
                 local name          = GetDisplayNameFromVehicleModel(vehicleProps.model)
                 local plate         = vehicleProps.plate
+				local VehEngineHP = GetVehicleEngineHealth(playerPed) 
+				local VehBodyHP = GetVehicleBodyHealth(playerPed)
 
                 ESX.TriggerServerCallback('netr_garages:checkIfVehicleIsOwned', function (owned)
 
-                  if owned ~= nil then                    
+                  if owned ~= nil and VehBodyHP>=900 and VehEngineHP>=900 then                    
                     TriggerServerEvent("netr_garages:updateOwnedVehicle", vehicleProps)
                     TriggerServerEvent("netr_garages:addCarToParking", vehicleProps)
 
@@ -187,6 +189,12 @@ Citizen.CreateThread(function ()
     end
   end
 end)
+
+-- Open Gui and Focus NUI
+function openGui()
+  SetNuiFocus(true, true)
+  SendNUIMessage({openBank = true})
+end
 
 -- Open Gui and Focus NUI
 function openGui()

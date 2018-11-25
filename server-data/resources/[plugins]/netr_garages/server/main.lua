@@ -29,6 +29,23 @@ ESX.RegisterServerCallback('netr_garages:getOwnedVehicles', function (source, cb
 end)
 
 ESX.RegisterServerCallback('netr_garages:checkIfVehicleIsOwned', function (source, cb, plate)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+
+	MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE (owner = @owner AND plate = @plate)', {
+		['@owner'] = xPlayer.identifier,
+		['@plate'] = plate
+	}, function (result)
+		if result[1] ~= nil then
+			cb(json.decode(result[1].vehicle))
+		else
+			cb(nil)
+		end
+	end)
+end)
+
+--[[
+ESX.RegisterServerCallback('netr_garages:checkIfVehicleIsOwned', function (source, cb, plate)
 
   local xPlayer = ESX.GetPlayerFromId(source)
   local found = nil
@@ -54,7 +71,7 @@ ESX.RegisterServerCallback('netr_garages:checkIfVehicleIsOwned', function (sourc
       end
     end
   )
-end)
+end)]]
 
 RegisterServerEvent('netr_garages:updateOwnedVehicle')
 AddEventHandler('netr_garages:updateOwnedVehicle', function(vehicleProps)
@@ -256,6 +273,8 @@ function parkAllOwnedVehicles()
 		end)
 
 		print('netr_garages: loaded garage hive!')
+		TriggerClientEvent('chatMessage', -1, 'SYSTEM', { 0, 0, 255 }, 'Garaż załadowany!')
+		--TriggerClientEvent("chatMessage", -1, "Garaż załadowany!", {255, 0, 0})
 	end)
 end
 
@@ -277,7 +296,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
-TriggerEvent('es:addGroupCommand', 'garload', 'admin', function (source, args, user)
+TriggerEvent('es:addGroupCommand', 'garload', 'superadmin', function (source, args, user)
 	parkAllOwnedVehicles()
 end, function (source, args, user)
 	TriggerClientEvent('chatMessage', source, 'SYSTEM', { 255, 0, 0 }, 'Insufficienct permissions!')
