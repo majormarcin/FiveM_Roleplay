@@ -4,9 +4,16 @@ LINK DO ESX-ORG:
 
 # INFORMACJE
 
-- EssentialMode 5.1.0 [ES Documentation](https://docs.essentialmode.com/)
-- ESX 1.1
-- mysql-async v3.0.1
+| Plugin | Wersja |
+| --- | --- |
+| EssentialMode | 5.1.0 |
+| ES-Extended | 1.1 |
+| mysql-async | v3.0.1 |
+| esx_menu_default | 1.0.3 |
+| esx_menu_dialog | 1.1.0 |
+| esx_menu_list | 1.0.1 |
+| esx_menu_default-1.0.3 | Show file differences that haven't been staged |
+| esx_menu_default-1.0.3 | Show file differences that haven't been staged |
 
 ### Paczka Pluginów RolePlay do ESX, gotowych żeby wystarować serwer w pare sekund.
 
