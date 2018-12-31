@@ -1,4 +1,0 @@
-
-steam:11000011acdac0b
-license:ff5626a72418eba898bc1bc538267a67ad66ebf3
-ip:31.42.0.237
