@@ -12,8 +12,8 @@ LINK DO ESX-ORG:
 | esx_menu_default | 1.0.3 |
 | esx_menu_dialog | 1.1.0 |
 | esx_menu_list | 1.0.1 |
-| esx_menu_default-1.0.3 | Show file differences that haven't been staged |
-| esx_menu_default-1.0.3 | Show file differences that haven't been staged |
+| pozostałe zasoby nieuwzględnione na liście | 10.01.2019 |
+
 
 ### Paczka Pluginów RolePlay do ESX, gotowych żeby wystarować serwer w pare sekund.
 
@@ -27,7 +27,7 @@ Pluginy ESX są często update'owane, wiec po pobraniu mojej paczki upewnij sie 
 4. Zedytuj server.cfg do twoich ustawien serwera (np. Nazwa / IP / Logo)
 5. Odpal Serwer!!
 
-Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz do mnie na [discord](https://discord.gg/thc7bYW)
+Jeżeli masz pytania, problemy lub potrzebujesz pomocy, napisz na odpowiednim kanale na moim serwerze [discord](https://discord.gg/thc7bYW)
 
 ### Paczka nie posiada plików serwerowych gdyż te zależne są od wybranego systemu operacyjnego serwera
 
