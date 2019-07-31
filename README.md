@@ -22,7 +22,7 @@ Pluginy ESX są często update'owane, wiec po pobraniu mojej paczki upewnij sie 
 
 2. Wklej pliki z server-data (nie musisz pobierac "cfx-server-data" jest to już dodane do paczki)
 3. Zimportuj wybrane pliki sql do swojej bazy danych znajdziesz je w folderach ze skryptami
-4. Eytuj server.cfg do twoich ustawien serwera dopisz skrypty i wymkagane parametry (więcej o pliku konfiguracyjnym [tutaj](https://docs.fivem.net/server-manual/setting-up-a-server/) )
+4. Eytuj server.cfg do twoich ustawien serwera dopisz skrypty i wymkagane parametry (więcej o pliku konfiguracyjnym [tutaj](https://docs.fivem.net/server-manual/setting-up-a-server/) 
 ```
 add_ace resource.essentialmode command.sets allow
 add_ace resource.essentialmode command.add_principal allow
