@@ -2,112 +2,149 @@ Config                            = {}
 
 Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
-Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 1.0 }
+Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 0.5 }
 Config.MarkerColor                = { r = 50, g = 50, b = 204 }
 
-Config.EnablePlayerManagement     = true
-Config.EnableArmoryManagement     = true
-Config.EnableESXIdentity          = true -- enable if you're using esx_identity
+Config.EnablePlayerManagement     = false
+Config.EnableArmoryManagement     = false
+Config.EnableESXIdentity          = false -- enable if you're using esx_identity
 Config.EnableNonFreemodePeds      = false -- turn this on if you want custom peds
-Config.EnableSocietyOwnedVehicles = false
-Config.EnableLicenses             = true -- enable if you're using esx_license
+Config.EnableLicenses             = false -- enable if you're using esx_license
 
 Config.EnableHandcuffTimer        = true -- enable handcuff timer? will unrestrain player after the time ends
 Config.HandcuffTimer              = 10 * 60000 -- 10 mins
 
-Config.EnableJobBlip              = true -- enable blips for colleagues, requires esx_society
+Config.EnableJobBlip              = false -- enable blips for colleagues, requires esx_society
 
-Config.MaxInService               = 5
-Config.Locale                     = 'pl'
+Config.MaxInService               = -1
+Config.Locale                     = 'fr'
 
 Config.PoliceStations = {
 
 	LSPD = {
 
 		Blip = {
-			Pos     = { x = 425.130, y = -979.558, z = 30.711 },
+			Coords  = vector3(425.1, -979.5, 30.7),
 			Sprite  = 60,
 			Display = 4,
 			Scale   = 1.2,
 			Colour  = 29
 		},
 
-		-- https://wiki.rage.mp/index.php?title=Weapons
-		AuthorizedWeapons = {
-			{ name = 'WEAPON_NIGHTSTICK',       price = 200 },
-			{ name = 'WEAPON_COMBATPISTOL',     price = 300 },
-			{ name = 'WEAPON_ASSAULTSMG',       price = 1250 },
-			{ name = 'WEAPON_ASSAULTRIFLE',     price = 1500 },
-			{ name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
-			{ name = 'WEAPON_STUNGUN',          price = 500 },
-			{ name = 'WEAPON_FLASHLIGHT',       price = 80 },
-			{ name = 'WEAPON_FIREEXTINGUISHER', price = 120 },
-			{ name = 'WEAPON_FLAREGUN',         price = 60 },
-			{ name = 'WEAPON_STICKYBOMB',       price = 250 },
-			{ name = 'GADGET_PARACHUTE',        price = 300 }
-		},
-
 		Cloakrooms = {
-			{ x = 452.600, y = -993.306, z = 29.750 },
+			vector3(452.6, -992.8, 30.6)
 		},
 
 		Armories = {
-			{ x = 451.699, y = -980.356, z = 29.689 },
+			vector3(451.7, -980.1, 30.6)
 		},
 
 		Vehicles = {
 			{
-				Spawner    = { x = 454.69, y = -1017.40, z = 27.43 },
+				Spawner = vector3(454.6, -1017.4, 28.4),
+				InsideShop = vector3(228.5, -993.5, -99.5),
 				SpawnPoints = {
-					{ x = 438.42, y = -1018.30, z = 27.75, heading = 90.0, radius = 6.0 },
-					{ x = 441.08, y = -1024.23, z = 28.30, heading = 90.0, radius = 6.0 },
-					{ x = 453.53, y = -1022.20, z = 28.02, heading = 90.0, radius = 6.0 },
-					{ x = 450.97, y = -1016.55, z = 28.10, heading = 90.0, radius = 6.0 }
+					{ coords = vector3(438.4, -1018.3, 27.7), heading = 90.0, radius = 6.0 },
+					{ coords = vector3(441.0, -1024.2, 28.3), heading = 90.0, radius = 6.0 },
+					{ coords = vector3(453.5, -1022.2, 28.0), heading = 90.0, radius = 6.0 },
+					{ coords = vector3(450.9, -1016.5, 28.1), heading = 90.0, radius = 6.0 }
 				}
 			},
 
 			{
-				Spawner    = { x = 473.38, y = -1018.43, z = 27.00 },
+				Spawner = vector3(473.3, -1018.8, 28.0),
+				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-					{ x = 475.98, y = -1021.65, z = 28.06, heading = 276.11, radius = 6.0 },
-					{ x = 484.10, y = -1023.19, z = 27.57, heading = 302.54, radius = 6.0 }
+					{ coords = vector3(475.9, -1021.6, 28.0), heading = 276.1, radius = 6.0 },
+					{ coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0 }
 				}
 			}
 		},
 
 		Helicopters = {
 			{
-				Spawner    = { x = 466.477, y = -982.819, z = 42.691 },
-				SpawnPoint = { x = 450.04, y = -981.14, z = 42.691 },
-				Heading    = 0.0
+				Spawner = vector3(461.1, -981.5, 43.6),
+				InsideShop = vector3(477.0, -1106.4, 43.0),
+				SpawnPoints = {
+					{ coords = vector3(449.5, -981.2, 43.6), heading = 92.6, radius = 10.0 }
+				}
 			}
 		},
 
-		VehicleDeleters = {
-			{ x = 462.74, y = -1014.4, z = 27.065 },
-			{ x = 462.40, y = -1019.7, z = 27.104 },
-			{ x = 469.12, y = -1024.52, z = 27.20 }
-		},
-
 		BossActions = {
-			{ x = 448.417, y = -973.208, z = 29.689 }
-		},
+			vector3(448.4, -973.2, 30.6)
+		}
 
-	},
+	}
 
 }
 
--- https://wiki.rage.mp/index.php?title=Vehicles
+Config.AuthorizedWeapons = {
+	recruit = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 1500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 80 }
+	},
+
+	officer = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	},
+
+	sergeant = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 70000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	},
+
+	intendent = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 70000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	},
+
+	lieutenant = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 70000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	},
+
+	chef = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 70000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	},
+
+	boss = {
+		{ weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 10000 },
+		{ weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 50000 },
+		{ weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 70000 },
+		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_STUNGUN', price = 500 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+	}
+}
+
 Config.AuthorizedVehicles = {
 	Shared = {
-		{
-			model = 'police',
-			label = 'Police Cruiser'
-		},
-		{
-			model = 'pbus',
-			label = 'Police Prison Bus'
-		}
+		{ model = 'police', label = 'Police Cruiser', price = 10000 },
+		{ model = 'pbus', label = 'Police Prison Bus', price = 5000 }
 	},
 
 	recruit = {
@@ -115,21 +152,12 @@ Config.AuthorizedVehicles = {
 	},
 
 	officer = {
-		{
-			model = 'police3',
-			label = 'Police Interceptor'
-		}
+		{ model = 'police3', label = 'Police Interceptor', price = 20000 }
 	},
 
 	sergeant = {
-		{
-			model = 'policet',
-			label = 'Police Transporter'
-		},
-		{
-			model = 'policeb',
-			label = 'Police Bike'
-		}
+		{ model = 'policet', label = 'Police Transporter', price = 18500 },
+		{ model = 'policeb', label = 'Police Bike', price = 30500 }
 	},
 
 	intendent = {
@@ -137,14 +165,8 @@ Config.AuthorizedVehicles = {
 	},
 
 	lieutenant = {
-		{
-			model = 'riot',
-			label = 'Police Riot'
-		},
-		{
-			model = 'fbi2',
-			label = 'FIB SUV'
-		}
+		{ model = 'riot', label = 'Police Riot', price = 70000 },
+		{ model = 'fbi2', label = 'FIB SUV', price = 60000 }
 	},
 
 	chef = {
@@ -156,6 +178,27 @@ Config.AuthorizedVehicles = {
 	}
 }
 
+Config.AuthorizedHelicopters = {
+	recruit = {},
+
+	officer = {},
+
+	sergeant = {},
+
+	intendent = {},
+
+	lieutenant = {
+		{ model = 'polmav', label = 'Police Maverick', livery = 0, price = 200000 }
+	},
+
+	chef = {
+		{ model = 'polmav', label = 'Police Maverick', livery = 0, price = 150000 }
+	},
+
+	boss = {
+		{ model = 'polmav', label = 'Police Maverick', livery = 0, price = 100000 }
+	}
+}
 
 -- CHECK SKINCHANGER CLIENT MAIN.LUA for matching elements
 

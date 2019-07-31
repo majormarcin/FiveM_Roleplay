@@ -8,7 +8,7 @@ Config.ReviveReward               = 700  -- revive reward, set to 0 if you don't
 Config.AntiCombatLog              = true -- enable anti-combat logging?
 Config.LoadIpl                    = true -- disable if you're using fivem-ipl or other IPL loaders
 
-Config.Locale                     = 'pl'
+Config.Locale                     = 'fr'
 
 local second = 1000
 local minute = 60 * second
@@ -17,7 +17,6 @@ Config.EarlyRespawnTimer          = 2 * minute  -- Time til respawn is available
 Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
 
 Config.EnablePlayerManagement     = false
-Config.EnableSocietyOwnedVehicles = false
 
 Config.RemoveWeaponsAfterRPDeath  = true
 Config.RemoveCashAfterRPDeath     = true
@@ -27,7 +26,7 @@ Config.RemoveItemsAfterRPDeath    = true
 Config.EarlyRespawnFine           = false
 Config.EarlyRespawnFineAmount     = 5000
 
-Config.RespawnPoint = { coords = vector3(341.07, -1397.31, 32.51), heading = 48.5 }
+Config.RespawnPoint = { coords = vector3(341.0, -1397.3, 32.5), heading = 48.5 }
 
 Config.Hospitals = {
 
@@ -133,35 +132,19 @@ Config.Hospitals = {
 Config.AuthorizedVehicles = {
 
 	ambulance = {
-		{
-			model = 'ambulance',
-			label = 'Ambulance Van',
-			price = 5000
-		}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 5000}
 	},
 
 	doctor = {
-		{
-			model = 'ambulance',
-			label = 'Ambulance Van',
-			price = 4500
-		}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 4500}
 	},
 
 	chief_doctor = {
-		{
-			model = 'ambulance',
-			label = 'Ambulance Van',
-			price = 3000
-		}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 3000}
 	},
 
 	boss = {
-		{
-			model = 'ambulance',
-			label = 'Ambulance Van',
-			price = 2000
-		}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 2000}
 	}
 
 }
@@ -171,39 +154,17 @@ Config.AuthorizedHelicopters = {
 	ambulance = {},
 
 	doctor = {
-		{
-			model = 'buzzard2',
-			label = 'Nagasaki Buzzard',
-			price = 150000
-		}
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 150000 }
 	},
 
 	chief_doctor = {
-		{
-			model = 'buzzard2',
-			label = 'Nagasaki Buzzard',
-			price = 150000
-		},
-
-		{
-			model = 'seasparrow',
-			label = 'Sea Sparrow',
-			price = 300000
-		}
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 150000 },
+		{ model = 'seasparrow', label = 'Sea Sparrow', price = 300000 }
 	},
 
 	boss = {
-		{
-			model = 'buzzard2',
-			label = 'Nagasaki Buzzard',
-			price = 100000
-		},
-
-		{
-			model = 'seasparrow',
-			label = 'Sea Sparrow',
-			price = 250000
-		}
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 10000 },
+		{ model = 'seasparrow', label = 'Sea Sparrow', price = 250000 }
 	}
 
 }

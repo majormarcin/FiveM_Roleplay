@@ -18,7 +18,7 @@ Citizen.CreateThread(function()
 			action    = 'openMenu',
 			namespace = namespace,
 			name      = name,
-			data      = data,
+			data      = data
 		})
 
 		ESX.SetTimeout(200, function()
@@ -30,13 +30,13 @@ Citizen.CreateThread(function()
 	local closeMenu = function(namespace, name)
 
 		OpenedMenus[namespace .. '_' .. name] = nil
-		local OpenedMenuCount                 = 0
+		local OpenedMenuCount = 0
 
 		SendNUIMessage({
 			action    = 'closeMenu',
 			namespace = namespace,
 			name      = name,
-			data      = data,
+			data      = data
 		})
 
 		for k,v in pairs(OpenedMenus) do
@@ -53,23 +53,24 @@ Citizen.CreateThread(function()
 
 	ESX.UI.Menu.RegisterType(MenuType, openMenu, closeMenu)
 
-	AddEventHandler('esx_menu_list:message:menu_submit', function(data)
+	RegisterNUICallback('menu_submit', function(data, cb)
 		local menu = ESX.UI.Menu.GetOpened(MenuType, data._namespace, data._name)
-		
+
 		if menu.submit ~= nil then
 			menu.submit(data, menu)
 		end
 
+		cb('OK')
 	end)
 
-	AddEventHandler('esx_menu_list:message:menu_cancel', function(data)
-		
+	RegisterNUICallback('menu_cancel', function(data, cb)
 		local menu = ESX.UI.Menu.GetOpened(MenuType, data._namespace, data._name)
-		
+
 		if menu.cancel ~= nil then
 			menu.cancel(data, menu)
 		end
 
+		cb('OK')
 	end)
 
 end)

@@ -11,7 +11,6 @@ server_scripts {
 	'locales/fi.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',
-	'locales/pl.lua',
 	'config.lua',
 	'server/main.lua'
 }
@@ -23,7 +22,6 @@ client_scripts {
 	'locales/en.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',
-	'locales/pl.lua',
 	'config.lua',
 	'client/jobs/fisherman.lua',
 	'client/jobs/fueler.lua',

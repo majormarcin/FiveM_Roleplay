@@ -1,4 +1,5 @@
 ESX = nil
+local playersHealing = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -118,23 +119,23 @@ ESX.RegisterServerCallback('esx_ambulancejob:buyJobVehicle', function(source, cb
 	if price == 0 then
 		print(('esx_ambulancejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
 		cb(false)
-	end
-
-	if xPlayer.getMoney() >= price then
-		xPlayer.removeMoney(price)
-
-		MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
-			['@owner'] = xPlayer.identifier,
-			['@vehicle'] = json.encode(vehicleProps),
-			['@plate'] = vehicleProps.plate,
-			['@type'] = type,
-			['@job'] = xPlayer.job.name,
-			['@stored'] = true
-		}, function (rowsChanged)
-			cb(true)
-		end)
 	else
-		cb(false)
+		if xPlayer.getMoney() >= price then
+			xPlayer.removeMoney(price)
+	
+			MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
+				['@owner'] = xPlayer.identifier,
+				['@vehicle'] = json.encode(vehicleProps),
+				['@plate'] = vehicleProps.plate,
+				['@type'] = type,
+				['@job'] = xPlayer.job.name,
+				['@stored'] = true
+			}, function (rowsChanged)
+				cb(true)
+			end)
+		else
+			cb(false)
+		end
 	end
 end)
 
@@ -250,21 +251,29 @@ end, function(source, args, user)
 end, { help = _U('revive_help'), params = {{ name = 'id' }} })
 
 ESX.RegisterUsableItem('medikit', function(source)
-	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-	xPlayer.removeInventoryItem('medikit', 1)
+	if not playersHealing[source] then
+		local xPlayer = ESX.GetPlayerFromId(source)
+		xPlayer.removeInventoryItem('medikit', 1)
+	
+		playersHealing[source] = true
+		TriggerClientEvent('esx_ambulancejob:useItem', source, 'medikit')
 
-	TriggerClientEvent('esx_ambulancejob:heal', _source, 'big')
-	TriggerClientEvent('esx:showNotification', _source, _U('used_medikit'))
+		Citizen.Wait(10000)
+		playersHealing[source] = nil
+	end
 end)
 
 ESX.RegisterUsableItem('bandage', function(source)
-	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-	xPlayer.removeInventoryItem('bandage', 1)
+	if not playersHealing[source] then
+		local xPlayer = ESX.GetPlayerFromId(source)
+		xPlayer.removeInventoryItem('bandage', 1)
+	
+		playersHealing[source] = true
+		TriggerClientEvent('esx_ambulancejob:useItem', source, 'bandage')
 
-	TriggerClientEvent('esx_ambulancejob:heal', _source, 'small')
-	TriggerClientEvent('esx:showNotification', _source, _U('used_bandage'))
+		Citizen.Wait(10000)
+		playersHealing[source] = nil
+	end
 end)
 
 ESX.RegisterServerCallback('esx_ambulancejob:getDeathStatus', function(source, cb)
@@ -285,8 +294,13 @@ RegisterServerEvent('esx_ambulancejob:setDeathStatus')
 AddEventHandler('esx_ambulancejob:setDeathStatus', function(isDead)
 	local identifier = GetPlayerIdentifiers(source)[1]
 
+	if type(isDead) ~= 'boolean' then
+		print(('esx_ambulancejob: %s attempted to parse something else than a boolean to setDeathStatus!'):format(identifier))
+		return
+	end
+
 	MySQL.Sync.execute('UPDATE users SET is_dead = @isDead WHERE identifier = @identifier', {
 		['@identifier'] = identifier,
-		['@isDead']     = isDead
+		['@isDead'] = isDead
 	})
 end)

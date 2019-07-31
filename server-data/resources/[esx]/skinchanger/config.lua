@@ -1,2 +1,2 @@
 Config = {}
-Config.Locale = 'pl'
+Config.Locale = 'en'

@@ -9,7 +9,7 @@ Config.ZDiff                = 0.5
 Config.EnableOwnedVehicles  = true
 Config.MinimumHealthPercent = 0
 
-Config.Locale = 'pl'
+Config.Locale = 'en'
 
 Config.Zones = {}
 
